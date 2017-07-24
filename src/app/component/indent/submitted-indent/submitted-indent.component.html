@@ -1,0 +1,24 @@
+<table class="table table-responsive table-hover mt-4">
+  <thead>
+    <tr class="table-danger">
+      <th>#</th>
+      <th>Indent No.</th>
+      <th>Date</th>
+      <th>Provided To</th>
+      <th>Provided By</th>
+      <th>On</th>
+      <th>Issued by</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let indent of indentArray">
+      <th scope="row">{{indent.id}}</th>
+      <td>{{indent.indentNumber}}</td>
+      <td>{{indent.indentDate}}</td>
+      <td>{{indent.providedTo}}</td>
+      <td>{{indent.providedBy}}</td>
+      <td>{{indent.providedOn}}</td>
+      <td>{{indent.issuedBy}}</td>
+    </tr>
+  </tbody>
+</table>
