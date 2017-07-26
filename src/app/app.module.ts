@@ -17,8 +17,8 @@ import { DraftIndentComponent } from './component/indent/draft-indent/draft-inde
 
 //Create Indent
 import {HttpClientModule} from '@angular/common/http'; 
-import {IndentService} from './Services/indent/indent.service';
-import {Indent_VM} from './ViewModel/indent/indent-vm';
+import {IndentService} from './service/indent/indent.service';
+import {IndentViewmodel} from './viewmodel/indent/indent.viewmodel';
 
 @NgModule({
   declarations: [

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import {IndentService} from '../../../Services/indent/indent.service';
-import {Indent_VM} from '../../../ViewModel/indent/indent-vm';
+import {IndentService} from '../../../service/indent/indent.service';
+import {IndentViewmodel} from '../../../viewmodel/indent/indent.viewmodel';
 
 @Component({
   selector: 'app-submitted-indent',
@@ -11,19 +11,21 @@ import {Indent_VM} from '../../../ViewModel/indent/indent-vm';
 
 
 export class SubmittedIndentComponent implements OnInit {
-  indentArray:Indent_VM[]=[];
+  ngOnInit() {
+    //this.getIndent();
+  }
+
+  indentArray:IndentViewmodel[]=[];
 
   constructor(private indentService:IndentService) { }
 
   getIndent():void{
     this.indentService.getAllIndent()
-    .subscribe(data=>this.indentArray=data as Indent_VM[])
+    .subscribe(data=>this.indentArray=data as IndentViewmodel[])
               ,error=>console.log('error: '+JSON.stringify(error))
               ,()=>console.log('Indent records retrieved..');
   }
 
-  ngOnInit() {
-    this.getIndent();
-  }
+  
 
 }

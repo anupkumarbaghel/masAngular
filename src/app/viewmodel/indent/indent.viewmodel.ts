@@ -1,6 +1,6 @@
 
 
-export class Indent_VM{
+export class IndentViewmodel{
   id:number;
   indentNumber:string;
   indentDate:Date;

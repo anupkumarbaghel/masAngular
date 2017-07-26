@@ -4,36 +4,67 @@
     <div class="col-md-4">
       <input class="form-control" [(ngModel)]="indent.indentNumber" type="text" id="txtIndentNumber">
     </div>
-    <label for="example-text-input" class="col-md-2 col-form-label text-right">Date</label>
+    <label for="txtIndentDate" class="col-md-2 col-form-label text-right">Date</label>
     <div class="col-md-4">
       <input class="form-control" type="date" [(ngModel)]="indent.indentDate" id="txtIndentDate">
     </div>
   </div>
 
    <div class="form-group row">
-    <label for="example-text-input" class="col-md-2 text-right col-form-label">To</label>
+    <label for="txtIndentTo" class="col-md-2 text-right col-form-label">To</label>
     <div class="col-md-4">
       <input class="form-control" [(ngModel)]="indent.providedTo" type="text" id="txtIndentTo">
     </div>
-    <label for="example-text-input" class="col-md-2 col-form-label text-right">By</label>
+    <label for="txtIndentBy" class="col-md-2 col-form-label text-right">By</label>
     <div class="col-md-4">
       <input class="form-control" type="text" [(ngModel)]="indent.providedBy" id="txtIndentBy">
     </div>
   </div>
 
    <div class="form-group row">
-    <label for="example-text-input" class="col-md-2 text-right col-form-label">On</label>
+    <label for="txtIndentOn" class="col-md-2 text-right col-form-label">On</label>
     <div class="col-md-4">
       <input class="form-control" [(ngModel)]="indent.providedOn" type="text" id="txtIndentOn">
     </div>
-    <label for="example-text-input" class="col-md-2 col-form-label text-right">Issued by the</label>
+    <label for="txtIndentIssueBy" class="col-md-2 col-form-label text-right">Issued by the</label>
     <div class="col-md-4">
       <input class="form-control" type="text" [(ngModel)]="indent.issuedBy" id="txtIndentIssueBy">
     </div>
   </div>
+
+<table class="table table-responsive table-hover mt-4">
+  <thead>
+    <tr class="table-danger">
+      <th>Serial No.</th>
+      <th>Desc</th>
+      <th>Qty</th>
+      <th>Head of Account</th>
+      <th>Name of contractor from whome value is recoverable </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.serialNo" type="text"></td>
+      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.Description" type="text"></td>
+      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.Quantity" type="number"></td>
+      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.HeadOfAccount" type="text"></td>
+      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.ContractorName" type="text"></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
   <div class="text-right">
     <div>
-        <button type="button" class="btn btn-success" (click)="onSubmit(indent)">Submit</button>
+        <button type="button" class="btn btn-success" (click)="onSaveButtonClick()">Save</button>
+          <button type="button" class="btn btn-success" (click)="onDraftButtonClick()">Draft</button>
+        <button type="button" class="btn btn-success" (click)="onSubitButtonClick()">Submit</button>
      </div>
   </div>
 </div>

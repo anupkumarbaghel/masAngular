@@ -1,24 +1,67 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Indent_VM} from '../../../ViewModel/indent/indent-vm';
-import {IndentService} from '../../../Services/indent/indent.service';
+import {IndentViewmodel} from '../../../viewmodel/indent/indent.viewmodel';
+import {IndentService} from '../../../service/indent/indent.service';
+import {IndentTableViewmodel} from '../../../viewmodel/indent/indent-table.viewmodel';
 
 @Component({
   selector: 'app-create-indent',
   templateUrl: './create-indent.component.html',
   styleUrls: ['./create-indent.component.css']
 })
+export class CreateIndentComponent implements OnInit {
 
+  ngOnInit(){
+       this.onInitilizeIndent();
+  }
+  
+  indent=new IndentViewmodel();
+  indentTable = new IndentTableViewmodel();
 
-export class CreateIndentComponent {
-  indent=new Indent_VM();
+  onInitilizeIndent(){
+        this.indentService.getOpenIndent().subscribe(
+      data=>this.indent=data as IndentViewmodel
+      ,this.onError
+    );
+    
+  }
 
   constructor(private indentService:IndentService) { }
+  
+  onSaveButtonClick():void{
+        this.onSubmitIndentHeader();
+        this.onSubmitIndentTableRow();
+  }
+  
+   onDraftButtonClick():void{
 
+   }
 
-  onSubmit() {
-    this.indentService.createIndent(this.indent)
-    .subscribe(function(data){   },function(error){alert('Your data not saved please try again')});
+   onSubmitButtonClick():void{
+
+   }
+  
+  onSubmitIndentTableRow():void{
+    if(this.indent.id>0)
+      {
+          this.indentTable.IndentID=this.indent.id;
+          this.indentService.createEditIndentTable(this.indentTable).subscribe(
+            returnid=>this.indentTable.id=returnid as number
+            ,this.onError
+          );
+      } 
+  }
+  
+  onError(errorMessage){
+    console.log("Error");
+  }
+
+  onSubmitIndentHeader():void {
+    this.indentService.createEditIndent(this.indent).subscribe(
+      returnid=>this.indent.id=returnid as number
+      ,this.onError
+    );
+
   }
 
 }
