@@ -1,3 +1,6 @@
+<div class="text-center" *ngIf="error">
+  <h2 style="color:red">There is error</h2>
+</div>
 <div class="container mt-4">
   <div class="form-group row">
     <label for="txtIndentNumber" class="col-md-2 text-right col-form-label">Indent No.</label>
@@ -46,10 +49,10 @@
   <tbody>
     <tr>
       <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.serialNo" type="text"></td>
-      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.Description" type="text"></td>
-      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.Quantity" type="number"></td>
-      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.HeadOfAccount" type="text"></td>
-      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.ContractorName" type="text"></td>
+      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.description" type="text"></td>
+      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.quantity" type="number"></td>
+      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.headOfAccount" type="text"></td>
+      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.contractorName" type="text"></td>
       <td></td>
     </tr>
   </tbody>

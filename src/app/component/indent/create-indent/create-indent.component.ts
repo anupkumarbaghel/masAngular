@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import 'rxjs/add/operator/map';
 
 import {IndentViewmodel} from '../../../viewmodel/indent/indent.viewmodel';
 import {IndentService} from '../../../service/indent/indent.service';
@@ -12,16 +13,22 @@ import {IndentTableViewmodel} from '../../../viewmodel/indent/indent-table.viewm
 export class CreateIndentComponent implements OnInit {
 
   ngOnInit(){
-       this.onInitilizeIndent();
+       this.InitilizeIndent();
   }
   
   indent=new IndentViewmodel();
   indentTable = new IndentTableViewmodel();
+  error:boolean;
 
-  onInitilizeIndent(){
-        this.indentService.getOpenIndent().subscribe(
-      data=>this.indent=data as IndentViewmodel
+  InitilizeIndent(){
+        this.indentService.getOpenIndent()
+        .subscribe(
+      data=>{
+        this.indent=data as IndentViewmodel;
+        this.indentTable=  data["indentTableCollection"][0] as IndentTableViewmodel;
+      }
       ,this.onError
+      
     );
     
   }
@@ -30,7 +37,6 @@ export class CreateIndentComponent implements OnInit {
   
   onSaveButtonClick():void{
         this.onSubmitIndentHeader();
-        this.onSubmitIndentTableRow();
   }
   
    onDraftButtonClick():void{
@@ -41,10 +47,10 @@ export class CreateIndentComponent implements OnInit {
 
    }
   
-  onSubmitIndentTableRow():void{
-    if(this.indent.id>0)
+  onSubmitIndentTableRow(indentID:number):void{
+    if(indentID>0)
       {
-          this.indentTable.IndentID=this.indent.id;
+          this.indentTable.indentID=indentID;
           this.indentService.createEditIndentTable(this.indentTable).subscribe(
             returnid=>this.indentTable.id=returnid as number
             ,this.onError
@@ -53,13 +59,18 @@ export class CreateIndentComponent implements OnInit {
   }
   
   onError(errorMessage){
-    console.log("Error");
+       this.error=true;
+       setTimeout(function() {
+         this.error=false;
+       }, 5000);
   }
+ 
 
   onSubmitIndentHeader():void {
     this.indentService.createEditIndent(this.indent).subscribe(
       returnid=>this.indent.id=returnid as number
       ,this.onError
+      ,()=>this.onSubmitIndentTableRow(this.indent.id)
     );
 
   }
