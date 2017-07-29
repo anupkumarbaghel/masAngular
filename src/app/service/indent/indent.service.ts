@@ -9,8 +9,8 @@ import { ApiEndPoint } from '../../apiEndPoint';
 @Injectable()
 export class IndentService{
     indentUrl=ApiEndPoint.indentApiUrl;
-    indentUrlByStatus=ApiEndPoint.indentApiUrlByStatus;
-    indentTableUrl=ApiEndPoint.indentTableApiUrl;
+    openIndentApiUrl=ApiEndPoint.openIndentApiUrl;
+   
 
     constructor(private http:HttpClient){}
 
@@ -19,16 +19,11 @@ export class IndentService{
     }
     
     getOpenIndent(){
-        return this.http.get(this.indentUrlByStatus,{
-            params: new HttpParams().set('IndentStatus', 'o')
-        });
+        return this.http.get(this.openIndentApiUrl);
     }
 
     createEditIndent(indent:IndentViewmodel){
-            return this.http.post(this.indentUrl,indent);
+        return this.http.post(this.indentUrl,indent);
     }
     
-    createEditIndentTable(indentTable:IndentTableViewmodel){
-            return this.http.post(this.indentTableUrl,indentTable);
-        }
 }

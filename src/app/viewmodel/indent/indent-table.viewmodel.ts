@@ -1,3 +1,5 @@
+
+
 export class IndentTableViewmodel{
   id:number;
   serialNo:string;
@@ -5,5 +7,6 @@ export class IndentTableViewmodel{
   quantity:number;
   headOfAccount:string;
   contractorName:string;
+  isDelete:boolean;
   indentID:number;
 }

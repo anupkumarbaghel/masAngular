@@ -19,6 +19,7 @@ import { DraftIndentComponent } from './component/indent/draft-indent/draft-inde
 import {HttpClientModule} from '@angular/common/http'; 
 import {IndentService} from './service/indent/indent.service';
 import {IndentViewmodel} from './viewmodel/indent/indent.viewmodel';
+import {FilterDeletedPipe} from './pipe/filter-deleted.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {IndentViewmodel} from './viewmodel/indent/indent.viewmodel';
     HomeComponent,
     SubmittedIndentComponent,
     CreateIndentComponent,
-    DraftIndentComponent
+    DraftIndentComponent,
+    FilterDeletedPipe
   ],
   imports: [
      BrowserModule

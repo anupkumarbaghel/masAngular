@@ -1,5 +1,5 @@
 <div class="text-center" *ngIf="error">
-  <h2 style="color:red">There is error</h2>
+  <h5 style="color:red">There is error, please try again</h5>
 </div>
 <div class="container mt-4">
   <div class="form-group row">
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-   <div class="form-group row">
+  <div class="form-group row">
     <label for="txtIndentTo" class="col-md-2 text-right col-form-label">To</label>
     <div class="col-md-4">
       <input class="form-control" [(ngModel)]="indent.providedTo" type="text" id="txtIndentTo">
@@ -24,7 +24,7 @@
     </div>
   </div>
 
-   <div class="form-group row">
+  <div class="form-group row">
     <label for="txtIndentOn" class="col-md-2 text-right col-form-label">On</label>
     <div class="col-md-4">
       <input class="form-control" [(ngModel)]="indent.providedOn" type="text" id="txtIndentOn">
@@ -35,28 +35,28 @@
     </div>
   </div>
 
-<table class="table table-responsive table-hover mt-4">
-  <thead>
-    <tr class="table-danger">
-      <th>Serial No.</th>
-      <th>Desc</th>
-      <th>Qty</th>
-      <th>Head of Account</th>
-      <th>Name of contractor from whome value is recoverable </th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.serialNo" type="text"></td>
-      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.description" type="text"></td>
-      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.quantity" type="number"></td>
-      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.headOfAccount" type="text"></td>
-      <td><input class="formTableInputWidth form-control" [(ngModel)]="indentTable.contractorName" type="text"></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-responsive table-hover mt-4">
+    <thead>
+      <tr class="table-primary">
+        <th>Serial No.</th>
+        <th>Desc</th>
+        <th>Qty</th>
+        <th>Head of Account</th>
+        <th>Name of contractor from whome value is recoverable </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let indentTable of indent.indentTableCollection | deletedItemFilter">
+        <td><input class="fullWidth form-control" [(ngModel)]="indentTable.serialNo" type="text"></td>
+        <td><input class="fullWidth form-control" [(ngModel)]="indentTable.description" type="text"></td>
+        <td><input class="fullWidth form-control" [(ngModel)]="indentTable.quantity" type="number"></td>
+        <td><input class="fullWidth form-control" [(ngModel)]="indentTable.headOfAccount" type="text"></td>
+        <td><input class="fullWidth form-control" [(ngModel)]="indentTable.contractorName" type="text"></td>
+        <td><button type="button" (click)="onDelButtonClick(indentTable)">X</button></td>
+      </tr>
+    </tbody>
+  </table>
 
 
 
@@ -65,9 +65,10 @@
 
   <div class="text-right">
     <div>
-        <button type="button" class="btn btn-success" (click)="onSaveButtonClick()">Save</button>
-          <button type="button" class="btn btn-success" (click)="onDraftButtonClick()">Draft</button>
-        <button type="button" class="btn btn-success" (click)="onSubitButtonClick()">Submit</button>
-     </div>
+      <button type="button" class="btn btn-success" (click)="onAddRowButtonClick()">Add Row</button>
+      <button type="button" class="btn btn-success" (click)="onSaveButtonClick()">Save</button>
+      <button type="button" class="btn btn-success" (click)="onDraftButtonClick()">Draft</button>
+      <button type="button" class="btn btn-success" (click)="onSubitButtonClick()">Submit</button>
+    </div>
   </div>
 </div>

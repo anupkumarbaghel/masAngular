@@ -1,4 +1,4 @@
-
+import {IndentTableViewmodel} from "./indent-table.viewmodel"
 
 export class IndentViewmodel{
   id:number;
@@ -8,4 +8,6 @@ export class IndentViewmodel{
   providedTo:string;
   providedOn:string;
   issuedBy:string;
+  isDelete:boolean;
+  indentTableCollection:IndentTableViewmodel[];
 }
