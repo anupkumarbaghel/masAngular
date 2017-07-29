@@ -17,9 +17,9 @@ export class CreateIndentComponent implements OnInit {
   indent = new IndentViewmodel();
   error: boolean;
   constructor(private indentService: IndentService) { }
-  onSaveButtonClick(): void { this.saveIndent(); }
-  onDraftButtonClick(): void {}
-  onSubmitButtonClick(): void {}
+  onSaveButtonClick(): void {this.indent.indentStatus="o"; this.saveIndent(); }
+  onDraftButtonClick(): void {this.indent.indentStatus="d";this.saveIndent();}
+  onSubmitButtonClick(): void {this.indent.indentStatus="s";this.saveIndent();}
   onAddRowButtonClick(): void {
     this.indent.indentTableCollection.push(new IndentTableViewmodel());
   }

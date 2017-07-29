@@ -1,7 +1,6 @@
 <table class="table table-responsive table-hover mt-4">
   <thead>
-    <tr class="table-danger">
-      <th>#</th>
+    <tr>
       <th>Indent No.</th>
       <th>Date</th>
       <th>Provided To</th>
@@ -11,8 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let indent of indentArray">
-      <th scope="row">{{indent.id}}</th>
+    <tr *ngFor="let indent of indentArray | deletedItemFilter">
       <td>{{indent.indentNumber}}</td>
       <td>{{indent.indentDate}}</td>
       <td>{{indent.providedTo}}</td>

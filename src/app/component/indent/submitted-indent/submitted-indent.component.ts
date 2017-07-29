@@ -12,7 +12,7 @@ import {IndentViewmodel} from '../../../viewmodel/indent/indent.viewmodel';
 
 export class SubmittedIndentComponent implements OnInit {
   ngOnInit() {
-    //this.getIndent();
+    this.getIndent();
   }
 
   indentArray:IndentViewmodel[]=[];
@@ -20,10 +20,10 @@ export class SubmittedIndentComponent implements OnInit {
   constructor(private indentService:IndentService) { }
 
   getIndent():void{
-    this.indentService.getAllIndent()
-    .subscribe(data=>this.indentArray=data as IndentViewmodel[])
+    this.indentService.getAllIndentByStatus("s")
+    .subscribe(data=>this.indentArray=data as IndentViewmodel[]
               ,error=>console.log('error: '+JSON.stringify(error))
-              ,()=>console.log('Indent records retrieved..');
+    );
   }
 
   

@@ -9,5 +9,6 @@ export class IndentViewmodel{
   providedOn:string;
   issuedBy:string;
   isDelete:boolean;
+  indentStatus:string;
   indentTableCollection:IndentTableViewmodel[];
 }

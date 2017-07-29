@@ -14,8 +14,10 @@ export class IndentService{
 
     constructor(private http:HttpClient){}
 
-    getAllIndent(){
-        return this.http.get(this.indentUrl);
+    getAllIndentByStatus(indentStatus:string){
+        return this.http.get(this.indentUrl,{
+           params: new HttpParams().set('indentStatus', indentStatus),
+        });
     }
     
     getOpenIndent(){
