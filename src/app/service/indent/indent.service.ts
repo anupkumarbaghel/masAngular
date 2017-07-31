@@ -10,7 +10,6 @@ import { ApiEndPoint } from '../../apiEndPoint';
 export class IndentService{
     indentUrl=ApiEndPoint.indentApiUrl;
     openIndentApiUrl=ApiEndPoint.openIndentApiUrl;
-   
 
     constructor(private http:HttpClient){}
 
@@ -20,6 +19,10 @@ export class IndentService{
         });
     }
     
+    GetIndent(id:number){
+        return this.http.get(this.indentUrl+'/'+id);
+    }
+
     getOpenIndent(){
         return this.http.get(this.openIndentApiUrl);
     }

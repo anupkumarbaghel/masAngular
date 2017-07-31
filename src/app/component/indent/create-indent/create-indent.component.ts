@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { IndentViewmodel } from '../../../viewmodel/indent/indent.viewmodel';
 import { IndentService } from '../../../service/indent/indent.service';
@@ -11,23 +11,28 @@ import { IndentTableViewmodel } from '../../../viewmodel/indent/indent-table.vie
 })
 export class CreateIndentComponent implements OnInit {
 
+  constructor(private indentService: IndentService) { }
   ngOnInit() {
     this.InitilizeIndent();
   }
+  @Output() onSelectedIndexChange = new EventEmitter<number>();
+
   indent = new IndentViewmodel();
   error: boolean;
-  constructor(private indentService: IndentService) { }
-  onSaveButtonClick(): void {this.indent.indentStatus="o"; this.saveIndent(); }
-  onDraftButtonClick(): void {this.indent.indentStatus="d";this.saveIndent();}
-  onSubmitButtonClick(): void {this.indent.indentStatus="s";this.saveIndent();}
+
+  onSaveButtonClick(): void { this.indent.indentStatus = "o"; this.saveIndent(); }
+  onDraftButtonClick(): void {this.indent.indentStatus = "d"; this.saveIndent();}
+  onSubmitButtonClick(): void { this.indent.indentStatus = "s"; this.saveIndent(); }
+
   onAddRowButtonClick(): void {
     this.indent.indentTableCollection.push(new IndentTableViewmodel());
   }
+
   onDelButtonClick(indentTable): void {
-     indentTable.isDelete=true;
-    if(this.indent.indentTableCollection.length<=0){  
-       this.indent.indentTableCollection.push(new IndentTableViewmodel());
-    }  
+    indentTable.isDelete = true;
+    if (this.indent.indentTableCollection.length <= 0) {
+      this.indent.indentTableCollection.push(new IndentTableViewmodel());
+    }
   }
 
   InitilizeIndent() {
@@ -39,29 +44,43 @@ export class CreateIndentComponent implements OnInit {
   }
 
   saveIndent(): void {
-    alert(JSON.stringify(this.indent));
     this.indentService.createEditIndent(this.indent).subscribe(
       retrunIndent => this.indent = retrunIndent as IndentViewmodel
       , this.onError
+      ,()=>{this.onSaveSuccess() } 
     );
   }
 
+  onSaveSuccess() {
+    let index = 0;
+    switch (this.indent.indentStatus) {
+      case 'o':
+        index = 0;
+        break;
+      case 'd':
+        index = 1;
+        this.indent=new IndentViewmodel();
+        break;
+      case 's':
+        index = 2;
+        this.indent=new IndentViewmodel();
+        break;
+      default:
+        index = 0;
+        break;
+    }
+    this.onSelectedIndexChange.emit(index);
+  }
   onError(errorMessage) {
-    if (errorMessage.status==404) {
+    if (errorMessage.status == 404) {
       this.indent.indentTableCollection = [];
       this.indent.indentTableCollection.push(new IndentTableViewmodel());
     }
     else {
       this.error = true;
-      setTimeout( ()=> {
+      setTimeout(() => {
         this.error = false;
       }, 5000);
     }
   }
-
-
-
-
-
-
 }
