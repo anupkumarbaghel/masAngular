@@ -3,7 +3,7 @@
     <app-create-indent (onSelectedIndexChange)="onSelectedIndexChange($event)"></app-create-indent>
   </md-tab>
   <md-tab label="Draft">
-    <app-draft-indent></app-draft-indent>
+    <app-draft-indent (onDraftOpenSuccess)="onSelectedIndexChange($event)" ></app-draft-indent>
   </md-tab>
   <md-tab label="Submitted">
     <app-submitted-indent></app-submitted-indent>

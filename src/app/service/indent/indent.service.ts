@@ -8,8 +8,9 @@ import { ApiEndPoint } from '../../apiEndPoint';
 
 @Injectable()
 export class IndentService{
-    indentUrl=ApiEndPoint.indentApiUrl;
-    openIndentApiUrl=ApiEndPoint.openIndentApiUrl;
+    private indentUrl=ApiEndPoint.indentApiUrl;
+    private openIndentApiUrl=ApiEndPoint.openIndentApiUrl;
+    private draftOpenApiUrl=ApiEndPoint.draftOpenApiUrl;
 
     constructor(private http:HttpClient){}
 
@@ -22,13 +23,19 @@ export class IndentService{
     GetIndent(id:number){
         return this.http.get(this.indentUrl+'/'+id);
     }
-
+    DeleteIndent(id:number){
+        return this.http.delete(this.indentUrl+'/'+id);
+    }
     getOpenIndent(){
         return this.http.get(this.openIndentApiUrl);
     }
 
     createEditIndent(indent:IndentViewmodel){
         return this.http.post(this.indentUrl,indent);
+    }
+
+    draftOpenIndent(id:number){
+        return this.http.post(this.draftOpenApiUrl,id);
     }
     
 }

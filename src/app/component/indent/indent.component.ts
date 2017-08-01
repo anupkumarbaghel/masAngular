@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
+import { CreateIndentComponent } from './create-indent/create-indent.component';
 import { DraftIndentComponent } from './draft-indent/draft-indent.component';
 import { SubmittedIndentComponent } from './submitted-indent/submitted-indent.component';
 
@@ -13,7 +14,10 @@ export class IndentComponent  {
   constructor() { }
 
  
-  selIndex: number;
+  private selIndex: number;
+  
+  @ViewChild(CreateIndentComponent)
+  private childCreate: CreateIndentComponent;
 
   @ViewChild(DraftIndentComponent)
   private childDraft: DraftIndentComponent;
@@ -22,11 +26,16 @@ export class IndentComponent  {
   private childSubmitted: SubmittedIndentComponent;
 
   onSelectedIndexChange(index: number) {
+    alert('onSelectedIndexChange : '+ index);
     this.selIndex = index;
+    alert(this.selIndex);
   }
-
+ 
   onTabChange(val) {
     switch (val.index) {
+      case 0:
+        this.childCreate.InitilizeIndent();
+        break;
       case 1:
         this.childDraft.getIndent();
         break;

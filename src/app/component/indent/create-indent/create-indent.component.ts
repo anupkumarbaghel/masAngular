@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { IndentViewmodel } from '../../../viewmodel/indent/indent.viewmodel';
 import { IndentService } from '../../../service/indent/indent.service';
