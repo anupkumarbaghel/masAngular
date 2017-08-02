@@ -26,9 +26,7 @@ export class IndentComponent  {
   private childSubmitted: SubmittedIndentComponent;
 
   onSelectedIndexChange(index: number) {
-    alert('onSelectedIndexChange : '+ index);
     this.selIndex = index;
-    alert(this.selIndex);
   }
  
   onTabChange(val) {

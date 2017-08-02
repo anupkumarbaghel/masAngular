@@ -1,6 +1,7 @@
 <div class="text-center" *ngIf="error">
   <h5 style="color:red">There is error, please try again</h5>
 </div>
+
 <div class="container mt-4">
   <div class="form-group row">
     <label for="txtIndentNumber" class="col-md-2 text-right col-form-label">Indent No.</label>
@@ -68,7 +69,7 @@
       <button type="button" class="btn btn-success" (click)="onAddRowButtonClick()">Add Row</button>
       <button type="button" class="btn btn-success" (click)="onSaveButtonClick()">Save</button>
       <button type="button" class="btn btn-success" (click)="onDraftButtonClick()">Draft</button>
-      <button type="button" class="btn btn-success" (click)="onSubmitButtonClick()">Submit</button>
+      <button type="button" class="btn btn-success" (click)="openDialog()">Submit</button>
     </div>
   </div>
 
