@@ -14,7 +14,7 @@ export class IndentComponent  {
   constructor() { }
 
  
-  private selIndex: number;
+ selIndex: number;
   
   @ViewChild(CreateIndentComponent)
   private childCreate: CreateIndentComponent;
@@ -41,9 +41,6 @@ export class IndentComponent  {
         this.childSubmitted.getIndent();
       break;
     }
-
-
-
   }
 
 

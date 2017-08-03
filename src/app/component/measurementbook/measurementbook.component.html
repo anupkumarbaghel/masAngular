@@ -1,3 +1,11 @@
-<p>
-  measurementbook works!
-</p>
+<md-tab-group (selectChange)="onTabChange($event)"  [selectedIndex]="selIndex">
+  <md-tab label="Create">
+    <app-create-measurement-book (onSelectedIndexChange)="onSelectedIndexChange($event)"></app-create-measurement-book>
+  </md-tab>
+  <md-tab label="Draft">
+    <app-draft-measurement-book (onDraftOpenSuccess)="onSelectedIndexChange($event)" ></app-draft-measurement-book>
+  </md-tab>
+  <md-tab label="Submitted">
+    <app-submitted-measurement-book></app-submitted-measurement-book>
+  </md-tab>
+</md-tab-group>

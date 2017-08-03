@@ -16,8 +16,8 @@ export class DraftIndentComponent {
 
   @Output() onDraftOpenSuccess = new EventEmitter<number>();
 
-  private indentArray: IndentViewmodel[] = [];
-  private indent: IndentViewmodel;
+   indentArray: IndentViewmodel[] = [];
+   indent: IndentViewmodel;
 
   @ViewChildren("dic") private childReadonly: QueryList<ReadonlyIndentComponent>;
 

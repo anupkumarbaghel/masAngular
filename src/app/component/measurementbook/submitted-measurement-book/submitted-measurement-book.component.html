@@ -1,0 +1,35 @@
+<div class="table-responsive container">
+<table class="table table-hover mt-4 fullWidth">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name of Contractor</th>
+      <th>Aggrement no.</th>
+      <th>Work Order no.</th>
+      <th>M.B no.</th>
+      <th>Page no.</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-template let-measurementBook ngFor [ngForOf]="measurementBookArray" let-i="index">
+      <tr>
+        <td data-toggle="collapse" [attr.data-target]="'#'+i">
+          <button type="button" (click)="onExpandButtonClick(measurementBook.id)">+</button>
+        </td>
+        <td>{{measurementBook.nameOfContractor}}</td>
+        <td>{{measurementBook.aggrementNumber}}</td>
+        <td>{{measurementBook.workOrderNumber}}</td>
+        <td>{{measurementBook.mbNumber}}</td>
+        <td>{{measurementBook.pageNumber}}</td>
+      </tr>
+      <tr class="collapse" [attr.id]="i">
+        <td colspan="6">
+          <app-readonly-measurement-book [measurementBookID]="measurementBook.id" #smbc></app-readonly-measurement-book>
+        </td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>
+</div>

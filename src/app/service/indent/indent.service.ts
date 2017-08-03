@@ -8,9 +8,9 @@ import { ApiEndPoint } from '../../apiEndPoint';
 
 @Injectable()
 export class IndentService{
-    private indentUrl=ApiEndPoint.indentApiUrl;
-    private openIndentApiUrl=ApiEndPoint.openIndentApiUrl;
-    private draftOpenApiUrl=ApiEndPoint.draftOpenApiUrl;
+    indentUrl=ApiEndPoint.indentApiUrl;
+    openIndentApiUrl=ApiEndPoint.openIndentApiUrl;
+    draftOpenApiUrl=ApiEndPoint.draftOpenApiUrl;
 
     constructor(private http:HttpClient){}
 

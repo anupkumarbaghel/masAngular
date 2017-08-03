@@ -1,0 +1,70 @@
+<div class="bg-readonly">
+  <div class="form-group row">
+    <div class="col-md-2 text-right mt-3">
+    Name of Contractor
+    </div>
+    <div class="col-md-10 mt-3">
+      {{measurementBook.nameOfContractor}}
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-2 text-right">
+    Aggrement no.
+    </div>
+    <div class="col-md-10">
+      {{measurementBook.aggrementNumber}}
+    </div>
+  </div>
+
+  <div class="form-group row">
+     <div class="col-md-2 text-right">
+    Work Order no.
+     </div>
+    <div class="col-md-10">
+      {{measurementBook.workOrderNumber}}
+    </div>
+  </div>
+
+  <div class="form-group row">
+     <div class="col-md-2 text-right">
+    M.B no.
+     </div>
+    <div class="col-md-10">
+      {{measurementBook.mbNumber}}
+    </div>
+  </div>
+
+  <div class="form-group row">
+     <div class="col-md-2 text-right">
+    Page no.
+     </div>
+    <div class="col-md-10">
+      {{measurementBook.pageNumber}}
+    </div>
+  </div>
+<div class=" table-responsive">
+  <table class="table">
+    <thead>
+      <tr class="bg-readonlytableheader">
+        <th>S.no.</th>
+        <th>Discription</th>
+        <th>Qty</th>
+        <th>Head of Account</th>
+
+      </tr>
+    </thead>
+    <tbody class="bg-readonly">
+      <tr *ngFor="let measurementBookTable of measurementBook.mbTable | deletedItemFilter">
+        <td>{{measurementBookTable.serialNumber}}</td>
+        <td>{{measurementBookTable.description}}</td>
+        <td>{{measurementBookTable.quantity}}</td>
+        <td>{{measurementBookTable.headOfAccount}}</td>
+
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+</div>

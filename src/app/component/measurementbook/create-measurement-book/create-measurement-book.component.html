@@ -1,0 +1,77 @@
+<div class="text-center" *ngIf="error">
+  <h5 style="color:red">There is error, please try again</h5>
+</div>
+
+<div class="container mt-4">
+  <div class="form-group row">
+    <label for="txtnameOfContractor" class="col-md-2 text-right col-form-label">Name of Contractor</label>
+    <div class="col-md-10">
+      <input class="form-control" [(ngModel)]="measurementBook.nameOfContractor" type="text" id="txtnameOfContractor">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="txtaggrementNumber" class="col-md-2 text-right col-form-label">Aggrement no.</label>
+    <div class="col-md-10">
+      <input class="form-control" [(ngModel)]="measurementBook.aggrementNumber" type="text" id="txtaggrementNumber">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="txtworkOrderNumber" class="col-md-2 text-right col-form-label">Work Order no.</label>
+    <div class="col-md-10">
+      <input class="form-control" [(ngModel)]="measurementBook.workOrderNumber" type="text" id="txtworkOrderNumber">
+    </div>
+  </div>
+
+   <div class="form-group row">
+    <label for="txtmBNumber" class="col-md-2 text-right col-form-label">M.B no.</label>
+    <div class="col-md-10">
+      <input class="form-control" [(ngModel)]="measurementBook.mbNumber" type="text" id="txtmBNumber">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="txtpageNumber" class="col-md-2 text-right col-form-label">Page no.</label>
+    <div class="col-md-10">
+      <input class="form-control" [(ngModel)]="measurementBook.pageNumber" type="text" id="txtpageNumber">
+    </div>
+  </div>
+
+  <table class="table table-responsive">
+    <thead>
+      <tr class="table-primary">
+        <th>S.no.</th>
+        <th>Discription</th>
+        <th>Qty</th>
+        <th>Head of Account</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let measurementBookTable of measurementBook.mbTable | deletedItemFilter">
+        <td><input class="fullWidth form-control" [(ngModel)]="measurementBookTable.serialNumber" type="text"></td>
+        <td><input class="fullWidth form-control" [(ngModel)]="measurementBookTable.description" type="text"></td>
+        <td><input class="fullWidth form-control" [(ngModel)]="measurementBookTable.quantity" type="number"></td>
+        <td><input class="fullWidth form-control" [(ngModel)]="measurementBookTable.headOfAccount" type="text"></td>
+        <td><button type="button" (click)="onDelButtonClick(measurementBookTable)">X</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
+  <div class="text-right">
+    <div>
+      <button type="button" class="btn btn-success" (click)="onAddRowButtonClick()">Add Row</button>
+      <button type="button" class="btn btn-success" (click)="onSaveButtonClick()">Save</button>
+      <button type="button" class="btn btn-success" (click)="onDraftButtonClick()">Draft</button>
+      <button type="button" class="btn btn-success" (click)="openDialog()">Submit</button>
+    </div>
+  </div>
+
+  
+</div>

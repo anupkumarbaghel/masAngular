@@ -25,7 +25,7 @@ export class CreateIndentComponent implements OnInit {
   onDraftButtonClick(): void {this.indent.indentStatus = "d"; this.saveIndent();}
   onSubmitButtonClick(): void {this.openDialog();  }
   openDialog() {
-    let dialogRef = this.dialog.open(DialogResultExampleDialog);
+    let dialogRef = this.dialog.open(ConfirmIndentSubmittedDialog);
     dialogRef.afterClosed().subscribe(result => {
       if(result=="confirm"){
            this.SubmitConfirmed();
@@ -107,6 +107,6 @@ export class CreateIndentComponent implements OnInit {
   selector: 'confirm-indent-submitted-dialog',
   templateUrl: 'confirm-indent-submitted-dialog.html',
 })
-export class DialogResultExampleDialog {
-  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) {}
+export class ConfirmIndentSubmittedDialog {
+  constructor(public dialogRef: MdDialogRef<ConfirmIndentSubmittedDialog>) {}
 }

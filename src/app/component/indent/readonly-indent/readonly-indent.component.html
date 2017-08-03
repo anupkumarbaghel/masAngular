@@ -1,28 +1,28 @@
 <div class="bg-readonly">
   <div class="form-group row ">
     <div class="col-md-2 text-right mt-3">
-        Indent No.
+      Indent No.
     </div>
     <div class="col-md-4 mt-3">
-        {{indent.indentNumber}}
+      {{indent.indentNumber}}
     </div>
     <div class="col-md-2 text-right mt-3">
-       Date
+      Date
     </div>
     <div class="col-md-4 mt-3">
-       {{indent.indentDate}}
+      {{indent.indentDate}}
     </div>
   </div>
 
   <div class="form-group row">
     <div class="col-md-2 text-right">
-        To
+      To
     </div>
     <div class="col-md-4">
-       {{indent.providedTo}}
+      {{indent.providedTo}}
     </div>
     <div class="col-md-2 text-right">
-       By
+      By
     </div>
     <div class="col-md-4">
       {{indent.providedBy}}
@@ -31,39 +31,39 @@
 
   <div class="form-group row">
     <div class="col-md-2 text-right">
-        On
+      On
     </div>
     <div class="col-md-4">
-     {{indent.providedOn}}
+      {{indent.providedOn}}
     </div>
     <div class="col-md-2 text-right">
-        Issued by the
+      Issued by the
     </div>
     <div class="col-md-4">
-     {{indent.issuedBy}}
+      {{indent.issuedBy}}
     </div>
   </div>
-  
-<div class="table-responsive">
-  <table class="table">
-    <thead class="bg-readonlytableheader">
-      <tr >
-        <th>Serial No.</th>
-        <th>Desc</th>
-        <th>Qty</th>
-        <th>Head of Account</th>
-        <th>Name of contractor from whome value is recoverable</th>
-      </tr>
-    </thead>
-    <tbody class="bg-readonly">
-      <tr *ngFor="let indentTable of indent.indentTableCollection | deletedItemFilter">
-        <td>{{indentTable.serialNo}}</td>
-        <td>{{indentTable.description}}</td>
-        <td>{{indentTable.quantity}}</td>
-        <td>{{indentTable.headOfAccount}}</td>
-        <td>{{indentTable.contractorName}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="bg-readonlytableheader">
+        <tr>
+          <th>Serial No.</th>
+          <th>Desc</th>
+          <th>Qty</th>
+          <th>Head of Account</th>
+          <th>Name of contractor from whome value is recoverable</th>
+        </tr>
+      </thead>
+      <tbody class="bg-readonly">
+        <tr *ngFor="let indentTable of indent.indentTableCollection | deletedItemFilter">
+          <td>{{indentTable.serialNo}}</td>
+          <td>{{indentTable.description}}</td>
+          <td>{{indentTable.quantity}}</td>
+          <td>{{indentTable.headOfAccount}}</td>
+          <td>{{indentTable.contractorName}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
