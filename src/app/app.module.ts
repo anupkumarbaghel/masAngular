@@ -5,7 +5,7 @@ import { FormsModule,FormControl,Validator }   from '@angular/forms';
 import 'hammerjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
-import {MdTabsModule,MdIconModule,MdDialogModule,MdButtonModule} from '@angular/material';
+import {MdTabsModule,MdIconModule,MdDialogModule,MdButtonModule,MdSidenavModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { IndentComponent } from './component/indent/indent.component';
@@ -16,7 +16,6 @@ import { CreateIndentComponent,ConfirmIndentSubmittedDialog } from './component/
 import { DraftIndentComponent } from './component/indent/draft-indent/draft-indent.component';
 import { ReadonlyIndentComponent } from './component/indent/readonly-indent/readonly-indent.component';
 
-//Create Indent
 import {HttpClientModule} from '@angular/common/http'; 
 import {IndentService} from './service/indent/indent.service';
 import {MeasurementBookService} from './service/measurementbook/measurement-book.service';
@@ -26,6 +25,9 @@ import { CreateMeasurementBookComponent,ConfirmMeasurementBookSubmittedDialog } 
 import { DraftMeasurementBookComponent } from './component/measurementbook/draft-measurement-book/draft-measurement-book.component';
 import { ReadonlyMeasurementBookComponent } from './component/measurementbook/readonly-measurement-book/readonly-measurement-book.component';
 import { SubmittedMeasurementBookComponent } from './component/measurementbook/submitted-measurement-book/submitted-measurement-book.component';
+import { AdminComponent } from './component/admin/admin.component';
+import { LockComponent } from './component/lock/lock.component';
+import { StoreComponent } from './component/store/store.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,10 @@ import { SubmittedMeasurementBookComponent } from './component/measurementbook/s
     ConfirmMeasurementBookSubmittedDialog,
     DraftMeasurementBookComponent,
     ReadonlyMeasurementBookComponent,
-    SubmittedMeasurementBookComponent
+    SubmittedMeasurementBookComponent,
+    AdminComponent,
+    LockComponent,
+    StoreComponent
   ],
   imports: [
      BrowserModule
@@ -51,6 +56,7 @@ import { SubmittedMeasurementBookComponent } from './component/measurementbook/s
     ,AppRoutingModule
     ,MdTabsModule
     ,MdButtonModule
+    ,MdSidenavModule
     ,MdIconModule
     ,MdDialogModule
     ,HttpClientModule

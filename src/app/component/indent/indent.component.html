@@ -1,11 +1,11 @@
 <md-tab-group (selectChange)="onTabChange($event)"  [selectedIndex]="selIndex">
   <md-tab label="Create">
-    <app-create-indent (onSelectedIndexChange)="onSelectedIndexChange($event)"></app-create-indent>
+    <app-create-indent [inputStore]="inputStore" (onSelectedIndexChange)="onSelectedIndexChange($event)"></app-create-indent>
   </md-tab>
   <md-tab label="Draft">
-    <app-draft-indent (onDraftOpenSuccess)="onSelectedIndexChange($event)" ></app-draft-indent>
+    <app-draft-indent  [inputStore]="inputStore" (onDraftOpenSuccess)="onSelectedIndexChange($event)" ></app-draft-indent>
   </md-tab>
   <md-tab label="Submitted">
-    <app-submitted-indent></app-submitted-indent>
+    <app-submitted-indent  [inputStore]="inputStore"></app-submitted-indent>
   </md-tab>
 </md-tab-group>

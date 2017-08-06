@@ -9,5 +9,6 @@ export class MeasurementBookViewmodel{
   pageNumber:string;
   isDelete:boolean;
   measurementBookStatus:string;
+  storeID:number;
   mbTable:MeasurementBookTableViewmodel[];
 }

@@ -1,8 +1,10 @@
-import { Component, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChildren, QueryList, Output, EventEmitter,Input } from '@angular/core';
 
 import { MeasurementBookService } from '../../../service/measurementbook/measurement-book.service';
 import { MeasurementBookViewmodel } from '../../../viewmodel/measurementbook/measurement-book.viewmodel';
 import { ReadonlyMeasurementBookComponent } from '../readonly-measurement-book/readonly-measurement-book.component';
+
+import { StoreViewmodel } from "../../../viewmodel/store/store.viewmodel";
 
 @Component({
   selector: 'app-submitted-measurement-book',
@@ -14,6 +16,7 @@ export class SubmittedMeasurementBookComponent {
   constructor(private measurementBookService: MeasurementBookService) { }
 
   @Output() onSubmittedOpenSuccess = new EventEmitter<number>();
+  @Input() inputStore:StoreViewmodel;
 
    measurementBookArray: MeasurementBookViewmodel[] = [];
    measurementBook: MeasurementBookViewmodel;
@@ -24,7 +27,7 @@ export class SubmittedMeasurementBookComponent {
 
   getMeasurementBook(): void {
 
-    this.measurementBookService.getAllMeasurementBookByStatus("s")
+    this.measurementBookService.getAllMeasurementBookByStatus("s",this.inputStore.id)
       .subscribe(data => this.measurementBookArray = data as MeasurementBookViewmodel[]
       , error => console.log('error: ' + JSON.stringify(error))
       );

@@ -25,8 +25,8 @@
         <td>{{indent.providedBy}}</td>
         <td>{{indent.providedOn}}</td>
         <td>{{indent.issuedBy}}</td>
-        <td><button type="button" (click)="onOpenIndent(indent.id)">Open</button></td>
-         <td><button type="button" (click)="onDelIndent(indent.id)">Del</button></td>
+        <td><button type="button" (click)="onOpenIndent(indent)">Open</button></td>
+         <td><button type="button" (click)="onDelIndent(indent.id)">X</button></td>
       </tr>
       <tr class="collapse" [attr.id]="i">
         <td colspan="7">

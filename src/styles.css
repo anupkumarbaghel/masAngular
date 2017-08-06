@@ -5,6 +5,24 @@
     background-color: #b6e2ed
 }
 
+.fullWidth{
+    width:100%;
+}
+
 .bg-readonlytableheader{
     background-color: rgba(33, 128, 247, 0.45)
+}
+
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .carousel-item img[src$=".JPG"] {
+    width: 100%;
+    height: 100%;
+  
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    
 }

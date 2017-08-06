@@ -10,5 +10,6 @@ export class IndentViewmodel{
   issuedBy:string;
   isDelete:boolean;
   indentStatus:string;
+  storeID:number;
   indentTableCollection:IndentTableViewmodel[];
 }

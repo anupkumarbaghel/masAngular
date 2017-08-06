@@ -14,10 +14,12 @@ export class IndentService{
 
     constructor(private http:HttpClient){}
 
-    getAllIndentByStatus(indentStatus:string){
-        return this.http.get(this.indentUrl,{
-           params: new HttpParams().set('indentStatus', indentStatus),
-        });
+    getAllIndentByStatus(indentStatus:string,storeID:number){
+          let queryStringParams = new HttpParams();
+           queryStringParams = queryStringParams.append("indentStatus", indentStatus);
+           queryStringParams = queryStringParams.append("storeID",""+storeID);
+
+        return this.http.get(this.indentUrl,{params:queryStringParams});
     }
     
     GetIndent(id:number){
@@ -26,16 +28,18 @@ export class IndentService{
     DeleteIndent(id:number){
         return this.http.delete(this.indentUrl+'/'+id);
     }
-    getOpenIndent(){
-        return this.http.get(this.openIndentApiUrl);
+    getOpenIndent(storeID:number){
+        return this.http.get(this.openIndentApiUrl,{
+           params: new HttpParams().set('storeID',""+storeID),
+        });
     }
 
     createEditIndent(indent:IndentViewmodel){
         return this.http.post(this.indentUrl,indent);
     }
 
-    draftOpenIndent(id:number){
-        return this.http.post(this.draftOpenApiUrl,id);
+    draftOpenIndent(indent:IndentViewmodel){
+        return this.http.post(this.draftOpenApiUrl,indent);
     }
     
 }

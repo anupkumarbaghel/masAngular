@@ -1,0 +1,24 @@
+<div *ngIf="store; else login">
+
+
+  <md-sidenav-container>
+    <md-sidenav mode="side" opened="true" style="padding-top:10px">
+     <b> {{store.name}}</b>
+      <div><button md-button (click)="showIndent()" class="fullWidth">Indent</button></div>
+      <div><button md-button (click)="showMeasurement()" class="fullWidth">Measurement Book</button></div>
+    </md-sidenav>
+    <div *ngIf="currentComponent=='measurement'; else indent">
+      <app-measurementbook [inputStore]="store"></app-measurementbook>
+    </div>
+    <ng-template #indent>
+      <app-indent [inputStore]="store"></app-indent>
+    </ng-template>
+  </md-sidenav-container>
+
+
+
+
+</div>
+<ng-template #login>
+  <app-lock (onStoreLockOpen)="onLockOpen($event)" [parentName]="myName"></app-lock>
+</ng-template>

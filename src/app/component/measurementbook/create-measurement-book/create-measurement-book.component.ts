@@ -1,10 +1,11 @@
-import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
-import {MdDialog, MdDialogRef} from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { MeasurementBookViewmodel } from '../../../viewmodel/measurementbook/measurement-book.viewmodel';
 import { MeasurementBookService } from '../../../service/measurementbook/measurement-book.service';
 import { MeasurementBookTableViewmodel } from '../../../viewmodel/measurementbook/measurement-book-table.viewmodel';
+import { StoreViewmodel } from "../../../viewmodel/store/store.viewmodel";
 
 @Component({
   selector: 'app-create-measurement-book',
@@ -13,30 +14,31 @@ import { MeasurementBookTableViewmodel } from '../../../viewmodel/measurementboo
 })
 export class CreateMeasurementBookComponent implements OnInit {
 
-  constructor(private measurementBookService: MeasurementBookService,public dialog: MdDialog) { }
+  constructor(private measurementBookService: MeasurementBookService, public dialog: MdDialog) { }
   ngOnInit() {
     this.InitilizeMeasurementBook();
   }
   @Output() onSelectedIndexChange = new EventEmitter<number>();
+  @Input() inputStore: StoreViewmodel;
 
   measurementBook = new MeasurementBookViewmodel();
   error: boolean;
 
   onSaveButtonClick(): void { this.measurementBook.measurementBookStatus = "o"; this.saveMeasurementBook(); }
-  onDraftButtonClick(): void {this.measurementBook.measurementBookStatus = "d"; this.saveMeasurementBook();}
-  onSubmitButtonClick(): void {this.openDialog();  }
+  onDraftButtonClick(): void { this.measurementBook.measurementBookStatus = "d"; this.saveMeasurementBook(); }
+  onSubmitButtonClick(): void { this.openDialog(); }
   openDialog() {
     let dialogRef = this.dialog.open(ConfirmMeasurementBookSubmittedDialog);
     dialogRef.afterClosed().subscribe(result => {
-      if(result=="confirm"){
-           this.SubmitConfirmed();
+      if (result == "confirm") {
+        this.SubmitConfirmed();
       }
-      else{
+      else {
         //empty for any othere logic
       }
     });
   }
-  SubmitConfirmed():void{this.measurementBook.measurementBookStatus = "s"; this.saveMeasurementBook();}
+  SubmitConfirmed(): void { this.measurementBook.measurementBookStatus = "s"; this.saveMeasurementBook(); }
 
   onAddRowButtonClick(): void {
     this.measurementBook.mbTable.push(new MeasurementBookTableViewmodel());
@@ -50,7 +52,7 @@ export class CreateMeasurementBookComponent implements OnInit {
   }
 
   InitilizeMeasurementBook() {
-    this.measurementBookService.getOpenMeasurementBook()
+    this.measurementBookService.getOpenMeasurementBook(this.inputStore.id)
       .subscribe(data => this.measurementBook = data as MeasurementBookViewmodel
       , error => this.onError(error)
       //, () => this.indent.indentTableCollection.push(new MeasurementBookTableViewmodel())
@@ -58,11 +60,20 @@ export class CreateMeasurementBookComponent implements OnInit {
   }
 
   saveMeasurementBook(): void {
-    this.measurementBookService.createEditMeasurementBook(this.measurementBook).subscribe(
-      retrunMB => this.measurementBook = retrunMB as MeasurementBookViewmodel
-      , this.onError
-      ,()=>{this.onSaveSuccess() } 
-    );
+    if (this.inputStore) {
+      if (this.inputStore.id > 0) {
+        this.measurementBook.storeID=this.inputStore.id;
+        this.measurementBookService.createEditMeasurementBook(this.measurementBook).subscribe(
+          retrunMB => this.measurementBook = retrunMB as MeasurementBookViewmodel
+          , this.onError
+          , () => { this.onSaveSuccess() }
+        );
+      }
+    }
+    else {
+      this.onError("Store is not valid");
+    }
+
   }
 
   onSaveSuccess() {
@@ -73,11 +84,11 @@ export class CreateMeasurementBookComponent implements OnInit {
         break;
       case 'd':
         index = 1;
-        this.measurementBook=new MeasurementBookViewmodel();
+        this.measurementBook = new MeasurementBookViewmodel();
         break;
       case 's':
         index = 2;
-        this.measurementBook=new MeasurementBookViewmodel();
+        this.measurementBook = new MeasurementBookViewmodel();
         break;
       default:
         index = 0;
@@ -106,5 +117,5 @@ export class CreateMeasurementBookComponent implements OnInit {
   templateUrl: 'confirm-measurement-book-submitted-dialog.html',
 })
 export class ConfirmMeasurementBookSubmittedDialog {
-  constructor(public dialogRef: MdDialogRef<ConfirmMeasurementBookSubmittedDialog>) {}
+  constructor(public dialogRef: MdDialogRef<ConfirmMeasurementBookSubmittedDialog>) { }
 }

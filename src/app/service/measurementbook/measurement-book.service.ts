@@ -14,10 +14,12 @@ export class MeasurementBookService{
 
     constructor(private http:HttpClient){}
 
-    getAllMeasurementBookByStatus(measurementBookStatus:string){
-        return this.http.get(this.measurementBookUrl,{
-           params: new HttpParams().set('measurementBookStatus', measurementBookStatus),
-        });
+    getAllMeasurementBookByStatus(measurementBookStatus:string,storeID:number){
+          let queryStringParams = new HttpParams();
+           queryStringParams = queryStringParams.append("measurementBookStatus", measurementBookStatus);
+           queryStringParams = queryStringParams.append("storeID",""+storeID);
+
+        return this.http.get(this.measurementBookUrl,{params:queryStringParams});
     }
     
     getMeasurementBook(id:number){
@@ -26,16 +28,18 @@ export class MeasurementBookService{
     DeleteMeasurementBook(id:number){
         return this.http.delete(this.measurementBookUrl+'/'+id);
     }
-    getOpenMeasurementBook(){
-        return this.http.get(this.openmeasurementBookApiUrl);
+    getOpenMeasurementBook(storeID:number){
+        return this.http.get(this.openmeasurementBookApiUrl,{
+           params: new HttpParams().set('storeId',""+storeID),
+        });
     }
 
     createEditMeasurementBook(measurementBook:MeasurementBookViewmodel){
         return this.http.post(this.measurementBookUrl,measurementBook);
     }
 
-    draftOpenMeasurementBook(id:number){
-        return this.http.post(this.draftOpenmeasurementBookApiUrl,id);
+    draftOpenMeasurementBook(measurementBook:MeasurementBookViewmodel){
+        return this.http.post(this.draftOpenmeasurementBookApiUrl,measurementBook);
     }
     
 }

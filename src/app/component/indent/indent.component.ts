@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,Input } from '@angular/core';
 
 import { CreateIndentComponent } from './create-indent/create-indent.component';
 import { DraftIndentComponent } from './draft-indent/draft-indent.component';
 import { SubmittedIndentComponent } from './submitted-indent/submitted-indent.component';
+import {StoreViewmodel} from "../../viewmodel/store/store.viewmodel";
 
 @Component({
   selector: 'app-indent',
@@ -13,7 +14,7 @@ export class IndentComponent  {
 
   constructor() { }
 
- 
+ @Input() inputStore:StoreViewmodel;
  selIndex: number;
   
   @ViewChild(CreateIndentComponent)

@@ -1,8 +1,10 @@
-import { Component, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChildren, QueryList, Output, EventEmitter,Input } from '@angular/core';
 
 import { IndentService } from '../../../service/indent/indent.service';
 import { IndentViewmodel } from '../../../viewmodel/indent/indent.viewmodel';
 import { ReadonlyIndentComponent } from '../readonly-indent/readonly-indent.component';
+
+import { StoreViewmodel } from "../../../viewmodel/store/store.viewmodel";
 
 @Component({
   selector: 'app-draft-indent',
@@ -15,6 +17,7 @@ export class DraftIndentComponent {
   constructor(private indentService: IndentService) { }
 
   @Output() onDraftOpenSuccess = new EventEmitter<number>();
+  @Input() inputStore:StoreViewmodel;
 
    indentArray: IndentViewmodel[] = [];
    indent: IndentViewmodel;
@@ -25,7 +28,7 @@ export class DraftIndentComponent {
 
   getIndent(): void {
 
-    this.indentService.getAllIndentByStatus("d")
+    this.indentService.getAllIndentByStatus("d",this.inputStore.id)
       .subscribe(data => this.indentArray = data as IndentViewmodel[]
       , error => console.log('error: ' + JSON.stringify(error))
       );
@@ -38,8 +41,9 @@ export class DraftIndentComponent {
     });
   }
 
-  onOpenIndent(indentID:number) {
-    this.indentService.draftOpenIndent(indentID).subscribe(e=>this.onDraftOpenSuccess.emit(0));
+  onOpenIndent(indent: IndentViewmodel) {
+    indent.storeID=this.inputStore.id;
+    this.indentService.draftOpenIndent(indent).subscribe(e=>this.onDraftOpenSuccess.emit(0));
   }
  
   onDelIndent(indentID:number){

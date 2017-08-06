@@ -1,5 +1,6 @@
 <nav class="navbar navbar-toggleable-md  bg-primary navbar-inverse sticky-top navbar-light  ">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" routerLink="">Exa Process</a>
@@ -8,24 +9,21 @@
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="indent">Indent</a>
+       <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/store">Store</a>
       </li>
+      <li class="fill-remaining-space" ></li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/measurementbook">Measurement Book</a>
+         <a class="nav-link" routerLink="/admin">Admin</a>
       </li>
     </ul>
-    <span class="navbar-text">
-      
-    </span>
   </div>
 </nav>
- 
-<div class="container body-content"> 
- <router-outlet></router-outlet>
- <hr />
- <footer>
-            <p>&copy; 2017 - Exa Process</p>
-        </footer>
-</div>
 
+<div class="container body-content">
+  <router-outlet></router-outlet>
+  <hr />
+  <footer>
+    <p>&copy; 2017 - Exa Process</p>
+  </footer>
+</div>

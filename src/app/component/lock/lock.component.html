@@ -1,0 +1,12 @@
+<div class="mt-4">
+    <div class="form-group row">
+        <label for="txtIndentNumber" class="col-md-2 text-right col-form-label">Please enter your key</label>
+        <div class="col-md-4">
+            <input class="form-control" [(ngModel)]="key" type="text" id="txtLockKey">
+        </div>
+        <button type="button" (click)="logIn()" class="btn btn-success">Ok</button>
+    </div>
+    <div *ngIf="error" class="form-group row text-right">
+        <h5 style="color:red">Invalid key please try again</h5>
+    </div>
+</div>
