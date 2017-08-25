@@ -5,10 +5,13 @@ export class MeasurementBookViewmodel{
   nameOfContractor:string;
   aggrementNumber:string;
   workOrderNumber:string;
+  lUNOrderNo:string;
   mbNumber:string;
   pageNumber:string;
+  measurementDate:Date;
   isDelete:boolean;
   measurementBookStatus:string;
   storeID:number;
-  mbTable:MeasurementBookTableViewmodel[];
+  mbTable:MeasurementBookTableViewmodel[]=[new MeasurementBookTableViewmodel()];
+  sequence:number;
 }

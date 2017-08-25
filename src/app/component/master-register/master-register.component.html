@@ -1,0 +1,30 @@
+<div class="table-responsive">
+  <table class="table ">
+    <thead>
+      <tr class="table-primary">
+        <th>S.no.</th>
+        <th>Name of Material with Description</th>
+        <th>Unit</th>
+        <th>Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let masterRegister of masterRegisterCollection">
+        <td>{{masterRegister.serialNumber}}</td>
+        <td>{{masterRegister.materialNameWithDescription}}</td>
+        <td>{{masterRegister.materialUnit}}</td>
+        <td>{{masterRegister.materialRate}}</td>
+      </tr>
+      <tr>
+        <td><input class="fullWidth form-control" [(ngModel)]="masterRegister.serialNumber" type="text"></td>
+        <td><input class="fullWidth form-control" [(ngModel)]="masterRegister.materialNameWithDescription" type="text"></td>
+        <td><input class="fullWidth form-control" [(ngModel)]="masterRegister.materialUnit" type="text"></td>
+        <td><input class="fullWidth form-control" [(ngModel)]="masterRegister.materialRate" type="number"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="text-right">
+  <button type="button" class="btn btn-success" (click)="onSaveButtonClick()">Save</button>
+</div>

@@ -57,8 +57,8 @@
     <tbody class="bg-readonly">
       <tr *ngFor="let measurementBookTable of measurementBook.mbTable | deletedItemFilter">
         <td>{{measurementBookTable.serialNumber}}</td>
-        <td>{{measurementBookTable.description}}</td>
-        <td>{{measurementBookTable.quantity}}</td>
+        <td>{{measurementBookTable.masterRegister.materialNameWithDescription}}</td>
+        <td>{{measurementBookTable.quantity}}{{measurementBookTable.masterRegister.materialUnit}}</td>
         <td>{{measurementBookTable.headOfAccount}}</td>
 
       </tr>

@@ -4,56 +4,72 @@
 
 <div class="container mt-4">
   <div class="form-group row">
-    <label for="txtnameOfContractor" class="col-md-3 text-right col-form-label">Name of Contractor</label>
-    <div class="col-md-9">
+    <label for="txtnameOfContractor" style="margin-left:0" class="col-md-2 text-right col-form-label">Contractor Name</label>
+    <div class="col-md-4">
       <input class="form-control" [(ngModel)]="measurementBook.nameOfContractor" type="text" id="txtnameOfContractor">
     </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="txtaggrementNumber" class="col-md-3 text-right col-form-label">Aggrement no.</label>
-    <div class="col-md-9">
+    <label for="txtaggrementNumber" class="col-md-2 text-right col-form-label">Aggrement no.</label>
+    <div class="col-md-4">
       <input class="form-control" [(ngModel)]="measurementBook.aggrementNumber" type="text" id="txtaggrementNumber">
     </div>
+    
   </div>
-
   <div class="form-group row">
-    <label for="txtworkOrderNumber" class="col-md-3 text-right col-form-label">Work Order no.</label>
-    <div class="col-md-9">
-      <input class="form-control" [(ngModel)]="measurementBook.workOrderNumber" type="text" id="txtworkOrderNumber">
-    </div>
+      <label for="txtworkOrderNumber" class="col-md-2 text-right col-form-label">Work Order no.</label>
+      <div class="col-md-4">
+        <input class="form-control" [(ngModel)]="measurementBook.workOrderNumber" type="text" id="txtworkOrderNumber">
+      </div>
+      <label for="txtmBNumber" class="col-md-2 text-right col-form-label">LUN Order no.</label>
+      <div class="col-md-4">
+        <input class="form-control" [(ngModel)]="measurementBook.lUNOrderNo" type="text" id="txtlUNOrderNo">
+      </div>
   </div>
+  
 
-   <div class="form-group row">
-    <label for="txtmBNumber" class="col-md-3 text-right col-form-label">M.B no.</label>
-    <div class="col-md-9">
-      <input class="form-control" [(ngModel)]="measurementBook.mbNumber" type="text" id="txtmBNumber">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="txtpageNumber" class="col-md-3 text-right col-form-label">Page no.</label>
-    <div class="col-md-9">
+  <div class="form-group row"> 
+      <label for="txtmBNumber" class="col-md-2 text-right col-form-label">M.B no.</label>
+      <div class="col-md-4">
+        <input class="form-control" [(ngModel)]="measurementBook.mbNumber" type="text" id="txtmBNumber">
+      </div>
+    <label for="txtpageNumber" class="col-md-2 text-right col-form-label">Page no.</label>
+    <div class="col-md-4">
       <input class="form-control" [(ngModel)]="measurementBook.pageNumber" type="text" id="txtpageNumber">
     </div>
+   
   </div>
+  <div class="form-group row"> 
+      <label for="txtIndentDate" class="col-md-2 col-form-label text-right">Measurement Date</label>
+      <div class="col-md-4">
+        <input class="form-control" type="date" [(ngModel)]="measurementBook.measurementDate" id="txtIndentDate">
+      </div>
+  </div>
+
+   
 
   <table class="table table-responsive">
     <thead>
       <tr class="table-primary">
         <th>S.no.</th>
-        <th>Discription</th>
+        <th class="fullWidth">Discription</th>
         <th>Qty</th>
-        <th>Head of Account</th>
+        <th class="largeWidth">Head of Account</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let measurementBookTable of measurementBook.mbTable | deletedItemFilter">
-        <td><input class="fullWidth form-control" [(ngModel)]="measurementBookTable.serialNumber" type="text"></td>
-        <td><input class="fullWidth form-control" [(ngModel)]="measurementBookTable.description" type="text"></td>
-        <td><input class="fullWidth form-control" [(ngModel)]="measurementBookTable.quantity" type="number"></td>
-        <td><input class="fullWidth form-control" [(ngModel)]="measurementBookTable.headOfAccount" type="text"></td>
+        <td><input class="smallWidth form-control" [(ngModel)]="measurementBookTable.serialNumber" type="text"></td>
+        <td><select [compareWith]="byId" [(ngModel)]="measurementBookTable.masterRegister" class="form-control">
+            <option  *ngFor="let masterRegister of masterRegisterCollection" 
+            [ngValue]="masterRegister">{{masterRegister.materialNameWithDescription}}</option>
+         </select></td>
+        <td>
+            <div class="input-group">
+          <input class="mediumWidth form-control" [(ngModel)]="measurementBookTable.quantity" type="number">
+          <span class="input-group-addon">{{measurementBookTable.masterRegister.materialUnit}}</span>
+            </div>
+        </td>
+        <td><input class="largeWidth form-control" [(ngModel)]="measurementBookTable.headOfAccount" type="text"></td>
         <td><button type="button" (click)="onDelButtonClick(measurementBookTable)">X</button></td>
       </tr>
     </tbody>

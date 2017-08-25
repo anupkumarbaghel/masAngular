@@ -58,8 +58,8 @@
       <tbody class="bg-readonly">
         <tr *ngFor="let indentTable of indent.indentTableCollection | deletedItemFilter">
           <td>{{indentTable.serialNo}}</td>
-          <td>{{indentTable.description}}</td>
-          <td>{{indentTable.quantity}}</td>
+          <td>{{indentTable.masterRegister.materialNameWithDescription}}</td>
+          <td>{{indentTable.quantity}}{{indentTable.masterRegister.materialUnit}}</td>
           <td>{{indentTable.headOfAccount}}</td>
           <td>{{indentTable.contractorName}}</td>
         </tr>

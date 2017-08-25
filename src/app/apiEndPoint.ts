@@ -8,5 +8,7 @@ export const ApiEndPoint = {
    ,measurementBookApiUrl:environment.apiBaseEndPoint+'/measurementbook'
    ,openmeasurementBookApiUrl:environment.apiBaseEndPoint+'/measurementbook'+'/openmeasurementbook'
    ,draftOpenmeasurementBookApiUrl:environment.apiBaseEndPoint+'/measurementbook'+'/draftopen'
+
+   ,masterRegisterUrl:environment.apiBaseEndPoint+'/masterregister'
   
 };

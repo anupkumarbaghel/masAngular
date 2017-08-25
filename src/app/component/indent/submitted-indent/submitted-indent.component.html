@@ -9,6 +9,7 @@
       <th>Provided By</th>
       <th>On</th>
       <th>Issued by</th>
+      <th>Submitted Date</th>
     </tr>
   </thead>
   <tbody>
@@ -23,9 +24,10 @@
         <td>{{indent.providedBy}}</td>
         <td>{{indent.providedOn}}</td>
         <td>{{indent.issuedBy}}</td>
+        <td>{{indent.submittedDate}}</td>
       </tr>
       <tr class="collapse" [attr.id]="i">
-        <td colspan="7">
+        <td colspan="8">
           <app-readonly-indent [indentID]="indent.id" #sic></app-readonly-indent>
         </td>
       </tr>

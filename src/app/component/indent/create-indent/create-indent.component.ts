@@ -6,6 +6,8 @@ import { IndentService } from '../../../service/indent/indent.service';
 import { IndentTableViewmodel } from '../../../viewmodel/indent/indent-table.viewmodel';
 
 import { StoreViewmodel } from "../../../viewmodel/store/store.viewmodel";
+import { MasterRegisterService } from '../../../service/master-register/master-register.service';
+import { MasterRegisterViewmodel } from "../../../viewmodel/master-register/master-register.viewmodel";
 
 @Component({
   selector: 'app-create-indent',
@@ -14,19 +16,41 @@ import { StoreViewmodel } from "../../../viewmodel/store/store.viewmodel";
 })
 export class CreateIndentComponent implements OnInit {
 
-  constructor(private indentService: IndentService, public dialog: MdDialog) { }
+  constructor(private masterRegisterService: MasterRegisterService,private indentService: IndentService, public dialog: MdDialog) { }
   ngOnInit() {
+    this.initilizeMasterRegisterForDropDown();
     this.InitilizeIndent();
   }
   @Output() onSelectedIndexChange = new EventEmitter<number>();
   @Input() inputStore: StoreViewmodel;
 
   indent = new IndentViewmodel();
+  masterRegisterCollection: MasterRegisterViewmodel[] = [new MasterRegisterViewmodel()];
   error: boolean;
+  nameContractorRowSpan:number=1;
+  
+ 
 
-  onSaveButtonClick(): void { this.indent.indentStatus = "o"; this.saveIndent(); }
+  onSaveButtonClick(): void {this.indent.indentStatus = "o"; this.saveIndent(); }
   onDraftButtonClick(): void { this.indent.indentStatus = "d"; this.saveIndent(); }
   onSubmitButtonClick(): void { this.openDialog(); }
+  onAddRowButtonClick(): void {
+    this.indent.indentTableCollection.push(new IndentTableViewmodel());
+    this.nameContractorRowSpan=this.indent.indentTableCollection.filter(e=>e.isDelete==false).length;
+  }
+  toggleButtonChanged(){
+    this.indent.isReceive=this.indent.isReceive?false:true;
+    
+    if(this.indent.isReceive){
+      this.indent.providedBy="";
+      this.indent.providedTo=this.inputStore.name;      
+      }
+      else{
+        this.indent.providedBy=this.inputStore.name;
+        this.indent.providedTo="";
+      }
+    
+  }
   openDialog() {
     let dialogRef = this.dialog.open(ConfirmIndentSubmittedDialog);
     dialogRef.afterClosed().subscribe(result => {
@@ -40,29 +64,38 @@ export class CreateIndentComponent implements OnInit {
   }
   SubmitConfirmed(): void { this.indent.indentStatus = "s"; this.saveIndent(); }
 
-  onAddRowButtonClick(): void {
-    this.indent.indentTableCollection.push(new IndentTableViewmodel());
-  }
+  
 
   onDelButtonClick(indentTable): void {
     indentTable.isDelete = true;
     if (this.indent.indentTableCollection.length <= 0) {
       this.indent.indentTableCollection.push(new IndentTableViewmodel());
     }
+    this.nameContractorRowSpan=this.indent.indentTableCollection.filter(e=>e.isDelete==false).length;
   }
 
   InitilizeIndent() {
+    this.indent.providedTo=this.inputStore.name;
     this.indentService.getOpenIndent(this.inputStore.id)
       .subscribe(data => this.indent = data as IndentViewmodel
       , error => this.onError(error)
       //, () => this.indent.indentTableCollection.push(new IndentTableViewmodel())
-      );
+      ); 
+  }
+
+  initilizeMasterRegisterForDropDown(){
+    this.masterRegisterService.getAllMasterRegister(this.inputStore.id).subscribe(
+      responseMasterRegisters => this.masterRegisterCollection = responseMasterRegisters as MasterRegisterViewmodel[]
+      , error => alert(error)
+    );
   }
 
   saveIndent(): void {
+    
     if (this.inputStore) {
       if (this.inputStore.id > 0) {
         this.indent.storeID=this.inputStore.id;
+
         this.indentService.createEditIndent(this.indent).subscribe(
           retrunIndent => this.indent = retrunIndent as IndentViewmodel
           , this.onError
@@ -75,6 +108,13 @@ export class CreateIndentComponent implements OnInit {
       this.onError('Store is not valid');
     }
 
+  }
+
+  byId(item1: MasterRegisterViewmodel, item2: MasterRegisterViewmodel) {
+    if(item1&&item2)
+    return item1.id === item2.id;
+    else
+      return false;
   }
 
   onSaveSuccess() {
@@ -99,8 +139,7 @@ export class CreateIndentComponent implements OnInit {
   }
   onError(errorMessage) {
     if (errorMessage.status == 404) {
-      this.indent.indentTableCollection = [];
-      this.indent.indentTableCollection.push(new IndentTableViewmodel());
+      //if needed
     }
     else {
       this.error = true;

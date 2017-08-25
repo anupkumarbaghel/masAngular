@@ -7,6 +7,9 @@ import { MeasurementBookService } from '../../../service/measurementbook/measure
 import { MeasurementBookTableViewmodel } from '../../../viewmodel/measurementbook/measurement-book-table.viewmodel';
 import { StoreViewmodel } from "../../../viewmodel/store/store.viewmodel";
 
+import { MasterRegisterService } from '../../../service/master-register/master-register.service';
+import { MasterRegisterViewmodel } from "../../../viewmodel/master-register/master-register.viewmodel";
+
 @Component({
   selector: 'app-create-measurement-book',
   templateUrl: './create-measurement-book.component.html',
@@ -14,14 +17,16 @@ import { StoreViewmodel } from "../../../viewmodel/store/store.viewmodel";
 })
 export class CreateMeasurementBookComponent implements OnInit {
 
-  constructor(private measurementBookService: MeasurementBookService, public dialog: MdDialog) { }
-  ngOnInit() {
+  constructor(private masterRegisterService: MasterRegisterService,private measurementBookService: MeasurementBookService, public dialog: MdDialog) { }
+  ngOnInit() { 
     this.InitilizeMeasurementBook();
+    this.initilizeMasterRegisterForDropDown();
   }
   @Output() onSelectedIndexChange = new EventEmitter<number>();
   @Input() inputStore: StoreViewmodel;
 
   measurementBook = new MeasurementBookViewmodel();
+  masterRegisterCollection: MasterRegisterViewmodel[] = [new MasterRegisterViewmodel()];
   error: boolean;
 
   onSaveButtonClick(): void { this.measurementBook.measurementBookStatus = "o"; this.saveMeasurementBook(); }
@@ -57,6 +62,19 @@ export class CreateMeasurementBookComponent implements OnInit {
       , error => this.onError(error)
       //, () => this.indent.indentTableCollection.push(new MeasurementBookTableViewmodel())
       );
+  }
+  initilizeMasterRegisterForDropDown(){
+    this.masterRegisterService.getAllMasterRegister(this.inputStore.id).subscribe(
+      responseMasterRegisters => this.masterRegisterCollection = responseMasterRegisters as MasterRegisterViewmodel[]
+      , error => alert(error)
+    );
+  }
+
+  byId(item1: MasterRegisterViewmodel, item2: MasterRegisterViewmodel) {
+    if(item1&&item2)
+    return item1.id === item2.id;
+    else
+      return false;
   }
 
   saveMeasurementBook(): void {
@@ -98,8 +116,7 @@ export class CreateMeasurementBookComponent implements OnInit {
   }
   onError(errorMessage) {
     if (errorMessage.status == 404) {
-      this.measurementBook.mbTable = [];
-      this.measurementBook.mbTable.push(new MeasurementBookTableViewmodel());
+      
     }
     else {
       this.error = true;

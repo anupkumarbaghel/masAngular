@@ -5,7 +5,7 @@ import { FormsModule,FormControl,Validator }   from '@angular/forms';
 import 'hammerjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
-import {MdTabsModule,MdIconModule,MdDialogModule,MdButtonModule,MdSidenavModule} from '@angular/material';
+import {MdTabsModule,MdIconModule,MdDialogModule,MdButtonModule,MdSidenavModule,MdSlideToggleModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { IndentComponent } from './component/indent/indent.component';
@@ -19,6 +19,7 @@ import { ReadonlyIndentComponent } from './component/indent/readonly-indent/read
 import {HttpClientModule} from '@angular/common/http'; 
 import {IndentService} from './service/indent/indent.service';
 import {MeasurementBookService} from './service/measurementbook/measurement-book.service';
+import {MasterRegisterService} from './service/master-register/master-register.service';
 import {FilterDeletedPipe} from './pipe/filter-deleted.pipe';
 
 import { CreateMeasurementBookComponent,ConfirmMeasurementBookSubmittedDialog } from './component/measurementbook/create-measurement-book/create-measurement-book.component';
@@ -28,6 +29,7 @@ import { SubmittedMeasurementBookComponent } from './component/measurementbook/s
 import { AdminComponent } from './component/admin/admin.component';
 import { LockComponent } from './component/lock/lock.component';
 import { StoreComponent } from './component/store/store.component';
+import { MasterRegisterComponent } from './component/master-register/master-register.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { StoreComponent } from './component/store/store.component';
     SubmittedMeasurementBookComponent,
     AdminComponent,
     LockComponent,
-    StoreComponent
+    StoreComponent,
+    MasterRegisterComponent
   ],
   imports: [
      BrowserModule
@@ -57,12 +60,13 @@ import { StoreComponent } from './component/store/store.component';
     ,MdTabsModule
     ,MdButtonModule
     ,MdSidenavModule
+    ,MdSlideToggleModule
     ,MdIconModule
     ,MdDialogModule
     ,HttpClientModule
     ,FormsModule
   ],
-  providers: [IndentService,MeasurementBookService],
+  providers: [IndentService,MeasurementBookService,MasterRegisterService],
   entryComponents: [ConfirmIndentSubmittedDialog
     ,ConfirmMeasurementBookSubmittedDialog],
   bootstrap: [AppComponent]

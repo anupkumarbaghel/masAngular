@@ -6,8 +6,27 @@
 }
 
 .fullWidth{
-    width:100%;
+    width:100% !important;
 }
+
+tr td{
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+.smallWidth{
+    width:55px !important;
+}
+
+.mediumWidth{
+    width:100px !important;
+}
+
+.largeWidth{
+    width:180px !important;
+}
+
+
 
 .bg-readonlytableheader{
     background-color: rgba(33, 128, 247, 0.45)

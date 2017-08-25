@@ -8,6 +8,7 @@
       <th>Work Order no.</th>
       <th>M.B no.</th>
       <th>Page no.</th>
+      <th>Measurement Date</th>
       <th></th>
       <th></th>
     </tr>
@@ -23,11 +24,12 @@
         <td>{{measurementBook.workOrderNumber}}</td>
         <td>{{measurementBook.mbNumber}}</td>
         <td>{{measurementBook.pageNumber}}</td>
+        <td>{{measurementBook.measurementDate}}</td>
         <td><button type="button" (click)="onOpenMeasurementBook(measurementBook)">Open</button></td>
          <td><button type="button" (click)="onDelMeasurementBook(measurementBook.id)">X</button></td>
       </tr>
       <tr class="collapse" [attr.id]="i">
-        <td colspan="8">
+        <td colspan="9">
           <app-readonly-measurement-book [measurementBookID]="measurementBook.id" #dmbc></app-readonly-measurement-book>
         </td>
       </tr>

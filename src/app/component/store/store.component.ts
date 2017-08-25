@@ -15,18 +15,46 @@ export class StoreComponent implements OnInit {
   myName:string="store";
   store:StoreViewmodel;
   currentComponent:string="indent";
+  masterActive:string;
+  indentActive:string="primary";
+measurementActive:string;
 
  onLockOpen(store: StoreViewmodel) {
     this.store = store;
   }
 
+  showMasterregister(){
+    this.currentComponent="masterregister";
+    this.markActive(this.currentComponent);
+  }
  showIndent(){
    this.currentComponent="indent";
+   this.markActive(this.currentComponent);
  }
  showMeasurement(){
     this.currentComponent="measurement";
+     this.markActive(this.currentComponent);
  }
    
+ markActive(choise:string){
+   this.indentActive="";
+   this.measurementActive="";
+   this.masterActive="";
+   let active="primary";
+   switch(choise)
+    {
+      case "masterregister":
+      this.masterActive=active;
+      break;
+      case "indent":
+       this.indentActive=active;
+       break;
+       case "measurement":
+       this.measurementActive=active;
+       break;
+    }
+
+ }
 
 
 
