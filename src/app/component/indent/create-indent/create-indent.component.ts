@@ -29,6 +29,7 @@ export class CreateIndentComponent implements OnInit {
   error: boolean;
   nameContractorRowSpan:number=1;
   
+  
  
 
   onSaveButtonClick(): void {this.indent.indentStatus = "o"; this.saveIndent(); }
@@ -38,16 +39,19 @@ export class CreateIndentComponent implements OnInit {
     this.indent.indentTableCollection.push(new IndentTableViewmodel());
     this.nameContractorRowSpan=this.indent.indentTableCollection.filter(e=>e.isDelete==false).length;
   }
+
   toggleButtonChanged(){
     this.indent.isReceive=this.indent.isReceive?false:true;
     
     if(this.indent.isReceive){
       this.indent.providedBy="";
       this.indent.providedTo=this.inputStore.name;      
+     
       }
       else{
         this.indent.providedBy=this.inputStore.name;
         this.indent.providedTo="";
+       
       }
     
   }

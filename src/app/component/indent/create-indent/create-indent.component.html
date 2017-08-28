@@ -66,7 +66,10 @@
             </div>
         </td>
         <td><input class="largeWidth form-control" [(ngModel)]="indentTable.headOfAccount" type="text"></td>
-        <td *ngIf="indent.indentTableCollection.indexOf(indentTable)==0" [attr.rowspan]="nameContractorRowSpan"><textarea class="largeWidth form-control" [(ngModel)]="indent.providedBy" [rows]="nameContractorRowSpan*2"  ></textarea></td>
+        <td *ngIf="indent.indentTableCollection.indexOf(indentTable)==0" [attr.rowspan]="nameContractorRowSpan">
+          <textarea *ngIf="this.indent.isReceive" class="largeWidth form-control" [(ngModel)]="indent.providedBy" [rows]="nameContractorRowSpan*2"  ></textarea>
+              <textarea *ngIf="!this.indent.isReceive" class="largeWidth form-control" [(ngModel)]="indent.providedTo" [rows]="nameContractorRowSpan*2"  ></textarea>
+            </td>
         <td><button *ngIf="indent.indentTableCollection.indexOf(indentTable)!=0" type="button" (click)="onDelButtonClick(indentTable)">X</button></td>
       </tr>
 

@@ -61,7 +61,8 @@
           <td>{{indentTable.masterRegister.materialNameWithDescription}}</td>
           <td>{{indentTable.quantity}}{{indentTable.masterRegister.materialUnit}}</td>
           <td>{{indentTable.headOfAccount}}</td>
-          <td>{{indentTable.contractorName}}</td>
+          <td *ngIf="indent.indentTableCollection.indexOf(indentTable)==0 && this.indent.isReceive" [attr.rowspan]="indent.indentTableCollection.length">{{indent.providedBy}}</td>
+          <td *ngIf="indent.indentTableCollection.indexOf(indentTable)==0 && !this.indent.isReceive" [attr.rowspan]="indent.indentTableCollection.length">{{indent.providedTo}}</td>
         </tr>
       </tbody>
     </table>
