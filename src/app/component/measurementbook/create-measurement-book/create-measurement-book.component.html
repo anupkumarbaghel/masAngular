@@ -4,7 +4,7 @@
 
 <div class="container mt-4">
   <div class="form-group row">
-    <label for="txtnameOfContractor" style="margin-left:0" class="col-md-2 text-right col-form-label">Contractor Name</label>
+    <label for="txtnameOfContractor" style="margin-left:0" class="col-md-2 text-right col-form-label">Firm/Contractor</label>
     <div class="col-md-4">
       <input class="form-control" [(ngModel)]="measurementBook.nameOfContractor" type="text" id="txtnameOfContractor">
     </div>
@@ -85,7 +85,7 @@
       <button type="button" class="btn btn-success" (click)="onAddRowButtonClick()">Add Row</button>
       <button type="button" class="btn btn-success" (click)="onSaveButtonClick()">Save</button>
       <button type="button" class="btn btn-success" (click)="onDraftButtonClick()">Draft</button>
-      <button type="button" class="btn btn-success" (click)="openDialog()">Submit</button>
+      <button type="button" class="btn btn-success" (click)="onSubmitButtonClick()">Submit</button>
     </div>
   </div>
 

@@ -28,10 +28,29 @@ export class CreateMeasurementBookComponent implements OnInit {
   measurementBook = new MeasurementBookViewmodel();
   masterRegisterCollection: MasterRegisterViewmodel[] = [new MasterRegisterViewmodel()];
   error: boolean;
+  submissionIsCorrect:boolean;
 
   onSaveButtonClick(): void { this.measurementBook.measurementBookStatus = "o"; this.saveMeasurementBook(); }
   onDraftButtonClick(): void { this.measurementBook.measurementBookStatus = "d"; this.saveMeasurementBook(); }
-  onSubmitButtonClick(): void { this.openDialog(); }
+  onSubmitButtonClick(): void { this.validationOnSubmit(); if(this.submissionIsCorrect){ this.openDialog();} }
+
+  validationOnSubmit(){
+    this.submissionIsCorrect=true;
+     let submissionValidateString="Please Fill : ";
+     if(!this.measurementBook.nameOfContractor){ 
+      this.submissionIsCorrect=false;
+      submissionValidateString+=" Firm/Contractor,";
+     } 
+     if(!this.measurementBook.measurementDate){ 
+      this.submissionIsCorrect=false;
+      submissionValidateString+=" Measurement Date,";
+     } 
+     
+     if(!this.submissionIsCorrect)
+     alert(submissionValidateString);
+  }
+
+
   openDialog() {
     let dialogRef = this.dialog.open(ConfirmMeasurementBookSubmittedDialog);
     dialogRef.afterClosed().subscribe(result => {

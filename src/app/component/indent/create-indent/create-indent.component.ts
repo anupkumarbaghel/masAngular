@@ -28,18 +28,43 @@ export class CreateIndentComponent implements OnInit {
   masterRegisterCollection: MasterRegisterViewmodel[] = [new MasterRegisterViewmodel()];
   error: boolean;
   nameContractorRowSpan:number=1;
+  submissionIsCorrect:boolean;
   
-  
- 
 
   onSaveButtonClick(): void {this.indent.indentStatus = "o"; this.saveIndent(); }
   onDraftButtonClick(): void { this.indent.indentStatus = "d"; this.saveIndent(); }
-  onSubmitButtonClick(): void { this.openDialog(); }
+  onSubmitButtonClick(): void {this.validationOnSubmit(); if(this.submissionIsCorrect){this.openDialog();}}
   onAddRowButtonClick(): void {
     this.indent.indentTableCollection.push(new IndentTableViewmodel());
     this.nameContractorRowSpan=this.indent.indentTableCollection.filter(e=>e.isDelete==false).length;
   }
 
+  validationOnSubmit(){
+    this.submissionIsCorrect=true;
+     let submissionValidateString="Please Fill : ";
+     if(!this.indent.indentNumber){ 
+      this.submissionIsCorrect=false;
+      submissionValidateString+="Indent no.,";
+     } 
+     if(!this.indent.indentDate){
+      this.submissionIsCorrect=false;
+      submissionValidateString+=" Date,";
+     }
+     if(!this.indent.providedTo){
+      this.submissionIsCorrect=false;
+      submissionValidateString+=" To,";
+     } 
+     if(!this.indent.providedBy){
+      this.submissionIsCorrect=false;
+      submissionValidateString+=" By,";
+     }
+     if(!this.indent.submittedDate){
+      this.submissionIsCorrect=false;
+      submissionValidateString+=" Submitted Date,";
+     } 
+     if(!this.submissionIsCorrect)
+     alert(submissionValidateString);
+  }
   toggleButtonChanged(){
     this.indent.isReceive=this.indent.isReceive?false:true;
     

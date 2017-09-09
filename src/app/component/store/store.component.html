@@ -3,12 +3,15 @@
 
   <md-sidenav-container>
     <md-sidenav mode="side" opened="true" style="padding-top:10px">
-     <b> {{store.name}}</b>
+    
      <div><button md-raised-button  (click)="showMasterregister()" [color]="masterActive" class="fullWidth">Stock Register</button></div>
       <div><button md-raised-button  (click)="showIndent()" [color]="indentActive" class="fullWidth">Indent</button></div>
       <div><button md-raised-button (click)="showMeasurement()" [color]="measurementActive" class="fullWidth">Measurement Book</button></div>
       <div><button md-raised-button (click)="showMasaccount()" [color]="masaccountActive" class="fullWidth">MAS Account</button></div>
     </md-sidenav>
+    <div class="text-left">
+    <b> {{store.name}}</b>
+    </div>
     <div *ngIf="currentComponent=='masterregister'">
       <app-master-register [inputStore]="store"></app-master-register>
     </div>
