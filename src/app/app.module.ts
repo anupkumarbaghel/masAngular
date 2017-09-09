@@ -20,6 +20,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {IndentService} from './service/indent/indent.service';
 import {MeasurementBookService} from './service/measurementbook/measurement-book.service';
 import {MasterRegisterService} from './service/master-register/master-register.service';
+import {ExcelReportService} from './service/excel-report/excel-report.service';
 import {FilterDeletedPipe} from './pipe/filter-deleted.pipe';
 
 import { CreateMeasurementBookComponent,ConfirmMeasurementBookSubmittedDialog } from './component/measurementbook/create-measurement-book/create-measurement-book.component';
@@ -30,6 +31,7 @@ import { AdminComponent } from './component/admin/admin.component';
 import { LockComponent } from './component/lock/lock.component';
 import { StoreComponent } from './component/store/store.component';
 import { MasterRegisterComponent } from './component/master-register/master-register.component';
+import { MasaccountComponent } from './component/masaccount/masaccount.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { MasterRegisterComponent } from './component/master-register/master-regi
     AdminComponent,
     LockComponent,
     StoreComponent,
-    MasterRegisterComponent
+    MasterRegisterComponent,
+    MasaccountComponent
   ],
   imports: [
      BrowserModule
@@ -66,7 +69,7 @@ import { MasterRegisterComponent } from './component/master-register/master-regi
     ,HttpClientModule
     ,FormsModule
   ],
-  providers: [IndentService,MeasurementBookService,MasterRegisterService],
+  providers: [IndentService,MeasurementBookService,MasterRegisterService,ExcelReportService],
   entryComponents: [ConfirmIndentSubmittedDialog
     ,ConfirmMeasurementBookSubmittedDialog],
   bootstrap: [AppComponent]

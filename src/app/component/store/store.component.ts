@@ -18,6 +18,7 @@ export class StoreComponent implements OnInit {
   masterActive:string;
   indentActive:string="primary";
 measurementActive:string;
+masaccountActive:string;
 
  onLockOpen(store: StoreViewmodel) {
     this.store = store;
@@ -35,11 +36,17 @@ measurementActive:string;
     this.currentComponent="measurement";
      this.markActive(this.currentComponent);
  }
+ showMasaccount(){
+  this.currentComponent="masaccount";
+   this.markActive(this.currentComponent);
+}
+ 
    
  markActive(choise:string){
    this.indentActive="";
    this.measurementActive="";
    this.masterActive="";
+   this.masaccountActive="";
    let active="primary";
    switch(choise)
     {
@@ -51,6 +58,9 @@ measurementActive:string;
        break;
        case "measurement":
        this.measurementActive=active;
+       break;
+       case "masaccount":
+       this.masaccountActive=active;
        break;
     }
 

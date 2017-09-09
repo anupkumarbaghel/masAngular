@@ -1,0 +1,25 @@
+<div class="container mt-4">
+
+  <div class="head">
+    <h4>Generate MAS Account</h4>
+    <p>Generate MAS account between selected dates , To Date Connot be in future</p>
+  </div>
+
+  <hr>
+  <div class="form-group row mt-4">
+    <label for="txtMasAccountFromDate" class="col-md-2 col-form-label text-right">From Date</label>
+    <div class="col-md-4">
+      <input class="form-control" type="date" [(ngModel)]="excelReportInput.startDate" id="txtMasAccountFromDate">
+    </div>
+    <label for="txtMasAccountToDate" class="col-md-2 col-form-label text-right">To Date</label>
+    <div class="col-md-4">
+      <input class="form-control" [(ngModel)]="excelReportInput.endDate" type="date" id="txtMasAccountToDate">
+    </div>
+  </div>
+
+  <div class="text-right">
+    <button type="button" class="btn btn-success" (click)="onGenerateMasAccount()">Generate MAS Account</button>
+  </div>
+
+
+</div>

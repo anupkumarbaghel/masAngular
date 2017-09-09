@@ -10,5 +10,7 @@ export const ApiEndPoint = {
    ,draftOpenmeasurementBookApiUrl:environment.apiBaseEndPoint+'/measurementbook'+'/draftopen'
 
    ,masterRegisterUrl:environment.apiBaseEndPoint+'/masterregister'
+
+   ,excelReportUrl:environment.apiBaseEndPoint+'/excelreport'
   
 };
