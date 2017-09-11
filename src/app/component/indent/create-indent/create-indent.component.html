@@ -10,7 +10,9 @@
     </div>
     <label for="txtIndentDate" class="col-md-2 col-form-label text-right">Date</label>
     <div class="col-md-4">
-      <input class="form-control" type="date" [(ngModel)]="indent.indentDate" id="txtIndentDate">
+        <dp-date-picker class="form-control" [(ngModel)]="indent.indentDate"
+        theme="dp-material"  [config]="datePickerConfig"
+         id="txtIndentDate" ></dp-date-picker>
     </div>
   </div>
 
@@ -87,7 +89,10 @@
   <div class=" form-group row">
       <label for="txtIndentSubmittedDate" class="col-md-2 col-form-label">Submitted Date</label>
       <div class="col-md-4">
-        <input class="form-control" type="date" [(ngModel)]="indent.submittedDate" id="txtIndentSubmittedDate">
+          <dp-date-picker class="form-control" [(ngModel)]="indent.submittedDate"
+          theme="dp-material"  [config]="datePickerConfig"
+           id="txtIndentSubmittedDate" ></dp-date-picker>
+     
       </div>
     <div class="col-md-6 text-right">
       <button type="button" class="btn btn-success" (click)="onAddRowButtonClick()">Add Row</button>

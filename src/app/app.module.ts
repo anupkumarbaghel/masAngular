@@ -33,6 +33,8 @@ import { StoreComponent } from './component/store/store.component';
 import { MasterRegisterComponent } from './component/master-register/master-register.component';
 import { MasaccountComponent } from './component/masaccount/masaccount.component';
 
+import {DpDatePickerModule} from 'ng2-date-picker';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +70,7 @@ import { MasaccountComponent } from './component/masaccount/masaccount.component
     ,MdDialogModule
     ,HttpClientModule
     ,FormsModule
+    ,DpDatePickerModule
   ],
   providers: [IndentService,MeasurementBookService,MasterRegisterService,ExcelReportService],
   entryComponents: [ConfirmIndentSubmittedDialog

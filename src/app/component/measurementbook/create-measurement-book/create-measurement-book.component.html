@@ -40,7 +40,9 @@
   <div class="form-group row"> 
       <label for="txtIndentDate" class="col-md-2 col-form-label text-right">Measurement Date</label>
       <div class="col-md-4">
-        <input class="form-control" type="date" [(ngModel)]="measurementBook.measurementDate" id="txtIndentDate">
+          <dp-date-picker class="form-control" [(ngModel)]="measurementBook.measurementDate"
+          theme="dp-material"  [config]="datePickerConfig"
+           id="txtMeasurementDate" ></dp-date-picker>
       </div>
   </div>
 

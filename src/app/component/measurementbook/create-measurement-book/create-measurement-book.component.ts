@@ -10,6 +10,8 @@ import { StoreViewmodel } from "../../../viewmodel/store/store.viewmodel";
 import { MasterRegisterService } from '../../../service/master-register/master-register.service';
 import { MasterRegisterViewmodel } from "../../../viewmodel/master-register/master-register.viewmodel";
 
+import {IDatePickerConfig} from 'ng2-date-picker';
+
 @Component({
   selector: 'app-create-measurement-book',
   templateUrl: './create-measurement-book.component.html',
@@ -21,6 +23,10 @@ export class CreateMeasurementBookComponent implements OnInit {
   ngOnInit() { 
     this.InitilizeMeasurementBook();
     this.initilizeMasterRegisterForDropDown();
+    this.datePickerConfig={};
+    this.datePickerConfig.format="DD.MM.YYYY";
+    this.datePickerConfig.drops='down';
+    this.datePickerConfig.disableKeypress=true;
   }
   @Output() onSelectedIndexChange = new EventEmitter<number>();
   @Input() inputStore: StoreViewmodel;
@@ -29,6 +35,7 @@ export class CreateMeasurementBookComponent implements OnInit {
   masterRegisterCollection: MasterRegisterViewmodel[] = [new MasterRegisterViewmodel()];
   error: boolean;
   submissionIsCorrect:boolean;
+  datePickerConfig:IDatePickerConfig;
 
   onSaveButtonClick(): void { this.measurementBook.measurementBookStatus = "o"; this.saveMeasurementBook(); }
   onDraftButtonClick(): void { this.measurementBook.measurementBookStatus = "d"; this.saveMeasurementBook(); }

@@ -9,6 +9,8 @@ import { StoreViewmodel } from "../../../viewmodel/store/store.viewmodel";
 import { MasterRegisterService } from '../../../service/master-register/master-register.service';
 import { MasterRegisterViewmodel } from "../../../viewmodel/master-register/master-register.viewmodel";
 
+import {IDatePickerConfig} from 'ng2-date-picker';
+
 @Component({
   selector: 'app-create-indent',
   templateUrl: './create-indent.component.html',
@@ -20,6 +22,10 @@ export class CreateIndentComponent implements OnInit {
   ngOnInit() {
     this.initilizeMasterRegisterForDropDown();
     this.InitilizeIndent();
+    this.datePickerConfig={};
+    this.datePickerConfig.format="DD.MM.YYYY";
+    this.datePickerConfig.drops='up';
+    this.datePickerConfig.disableKeypress=true;
   }
   @Output() onSelectedIndexChange = new EventEmitter<number>();
   @Input() inputStore: StoreViewmodel;
@@ -29,6 +35,8 @@ export class CreateIndentComponent implements OnInit {
   error: boolean;
   nameContractorRowSpan:number=1;
   submissionIsCorrect:boolean;
+  datePickerConfig:IDatePickerConfig;
+
   
 
   onSaveButtonClick(): void {this.indent.indentStatus = "o"; this.saveIndent(); }
