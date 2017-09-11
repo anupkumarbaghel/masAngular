@@ -71,8 +71,11 @@
           <span class="input-group-addon">{{measurementBookTable.masterRegister.materialUnit}}</span>
             </div>
         </td>
-        <td><input class="largeWidth form-control" [(ngModel)]="measurementBookTable.headOfAccount" type="text"></td>
-        <td><button type="button" (click)="onDelButtonClick(measurementBookTable)">X</button></td>
+        <td *ngIf="measurementBook.mbTable.indexOf(measurementBookTable)==0"  [attr.rowspan]="headOfAccountRowSpan">
+            <textarea class="largeWidth form-control" [(ngModel)]="measurementBook.headOfAccount" [rows]="headOfAccountRowSpan*2" ></textarea>
+        </td>
+       
+        <td><button *ngIf="measurementBook.mbTable.indexOf(measurementBookTable)!=0" type="button" (click)="onDelButtonClick(measurementBookTable)">X</button></td>
       </tr>
     </tbody>
   </table>

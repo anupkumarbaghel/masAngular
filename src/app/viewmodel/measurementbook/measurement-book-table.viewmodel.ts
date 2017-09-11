@@ -6,9 +6,9 @@ export class MeasurementBookTableViewmodel{
         description:string;
         quantity:number;
         unit:string;
-        headOfAccount:string;
+       
         masterRegister:MasterRegisterViewmodel=new MasterRegisterViewmodel();
-        isDelete:boolean;
+        isDelete:boolean=false;
         measurementBookID:number;
         sequence:number;
 }

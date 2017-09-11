@@ -23,10 +23,10 @@ export class CreateMeasurementBookComponent implements OnInit {
   ngOnInit() { 
     this.InitilizeMeasurementBook();
     this.initilizeMasterRegisterForDropDown();
-    this.datePickerConfig={};
-    this.datePickerConfig.format="DD.MM.YYYY";
-    this.datePickerConfig.drops='down';
-    this.datePickerConfig.disableKeypress=true;
+    // this.datePickerConfig={};
+    // this.datePickerConfig.format="DD.MM.YYYY";
+    // this.datePickerConfig.drops='down';
+    // this.datePickerConfig.disableKeypress=true;
   }
   @Output() onSelectedIndexChange = new EventEmitter<number>();
   @Input() inputStore: StoreViewmodel;
@@ -36,6 +36,7 @@ export class CreateMeasurementBookComponent implements OnInit {
   error: boolean;
   submissionIsCorrect:boolean;
   datePickerConfig:IDatePickerConfig;
+  headOfAccountRowSpan:number=1;
 
   onSaveButtonClick(): void { this.measurementBook.measurementBookStatus = "o"; this.saveMeasurementBook(); }
   onDraftButtonClick(): void { this.measurementBook.measurementBookStatus = "d"; this.saveMeasurementBook(); }
@@ -73,6 +74,7 @@ export class CreateMeasurementBookComponent implements OnInit {
 
   onAddRowButtonClick(): void {
     this.measurementBook.mbTable.push(new MeasurementBookTableViewmodel());
+    this.headOfAccountRowSpan=this.measurementBook.mbTable.filter(e=>e.isDelete==false).length;
   }
 
   onDelButtonClick(measurementBookTable): void {
@@ -80,6 +82,7 @@ export class CreateMeasurementBookComponent implements OnInit {
     if (this.measurementBook.mbTable.length <= 0) {
       this.measurementBook.mbTable.push(new MeasurementBookTableViewmodel());
     }
+    this.headOfAccountRowSpan=this.measurementBook.mbTable.filter(e=>e.isDelete==false).length;
   }
 
   InitilizeMeasurementBook() {

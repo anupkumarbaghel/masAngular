@@ -11,7 +11,7 @@
     <label for="txtIndentDate" class="col-md-2 col-form-label text-right">Date</label>
     <div class="col-md-4">
         <dp-date-picker class="form-control" [(ngModel)]="indent.indentDate"
-        theme="dp-material"  [config]="datePickerConfig"
+        theme="dp-material"  
          id="txtIndentDate" ></dp-date-picker>
     </div>
   </div>
@@ -67,7 +67,9 @@
           <span class="input-group-addon">{{indentTable.masterRegister.materialUnit}}</span>
             </div>
         </td>
-        <td><input class="largeWidth form-control" [(ngModel)]="indentTable.headOfAccount" type="text"></td>
+        <td *ngIf="indent.indentTableCollection.indexOf(indentTable)==0"  [attr.rowspan]="nameContractorRowSpan">
+          <textarea class="largeWidth form-control" [(ngModel)]="indent.headOfAccount" [rows]="nameContractorRowSpan*2" ></textarea>
+          </td>
         <td *ngIf="indent.indentTableCollection.indexOf(indentTable)==0" [attr.rowspan]="nameContractorRowSpan">
           <textarea *ngIf="this.indent.isReceive" class="largeWidth form-control" [(ngModel)]="indent.providedBy" [rows]="nameContractorRowSpan*2"  ></textarea>
               <textarea *ngIf="!this.indent.isReceive" class="largeWidth form-control" [(ngModel)]="indent.providedTo" [rows]="nameContractorRowSpan*2"  ></textarea>
@@ -90,7 +92,7 @@
       <label for="txtIndentSubmittedDate" class="col-md-2 col-form-label">Submitted Date</label>
       <div class="col-md-4">
           <dp-date-picker class="form-control" [(ngModel)]="indent.submittedDate"
-          theme="dp-material"  [config]="datePickerConfig"
+          theme="dp-material"  
            id="txtIndentSubmittedDate" ></dp-date-picker>
      
       </div>

@@ -12,6 +12,7 @@ export class IndentViewmodel{
   isDelete:boolean;
   isReceive:boolean=true;
   indentStatus:string;
+  headOfAccount:string;
   storeID:number;
   indentTableCollection:IndentTableViewmodel[]=[new IndentTableViewmodel()];
   sequence:number;

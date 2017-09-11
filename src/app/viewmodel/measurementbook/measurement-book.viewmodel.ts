@@ -11,6 +11,7 @@ export class MeasurementBookViewmodel{
   measurementDate:Date;
   isDelete:boolean;
   measurementBookStatus:string;
+  headOfAccount:string;
   storeID:number;
   mbTable:MeasurementBookTableViewmodel[]=[new MeasurementBookTableViewmodel()];
   sequence:number;

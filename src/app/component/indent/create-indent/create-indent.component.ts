@@ -22,10 +22,11 @@ export class CreateIndentComponent implements OnInit {
   ngOnInit() {
     this.initilizeMasterRegisterForDropDown();
     this.InitilizeIndent();
-    this.datePickerConfig={};
-    this.datePickerConfig.format="DD.MM.YYYY";
-    this.datePickerConfig.drops='up';
-    this.datePickerConfig.disableKeypress=true;
+    // this.datePickerConfig={};
+    // this.datePickerConfig.format="DD.MM.YYYY";
+    // this.datePickerConfig.drops='up';
+    // this.datePickerConfig.disableKeypress=true;
+    
   }
   @Output() onSelectedIndexChange = new EventEmitter<number>();
   @Input() inputStore: StoreViewmodel;

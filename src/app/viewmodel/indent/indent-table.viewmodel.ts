@@ -6,8 +6,6 @@ export class IndentTableViewmodel{
   description:string;
   quantity:number;
   unit:string;
-  headOfAccount:string;
- 
   masterRegister:MasterRegisterViewmodel=new MasterRegisterViewmodel();
   isDelete:boolean=false;
   indentID:number;
