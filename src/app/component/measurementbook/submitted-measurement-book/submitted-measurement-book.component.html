@@ -25,9 +25,10 @@
         <td>{{measurementBook.mbNumber}}</td>
         <td>{{measurementBook.pageNumber}}</td>
         <td>{{measurementBook.measurementDate}}</td>
+        <td><button type="button" (click)="onDelMeasurementBook(measurementBook.id)">X</button></td>
       </tr>
       <tr class="collapse" [attr.id]="i">
-        <td colspan="7">
+        <td colspan="8">
           <app-readonly-measurement-book [measurementBookID]="measurementBook.id" #smbc></app-readonly-measurement-book>
         </td>
       </tr>

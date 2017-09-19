@@ -32,4 +32,8 @@ export class SubmittedIndentComponent{
   });   
   }
 
+  onDelIndent(indentID:number){
+    this.indentService.DeleteIndent(indentID).subscribe(null,null,()=>this.getIndent());
+ }
+
 }

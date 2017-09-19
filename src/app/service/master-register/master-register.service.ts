@@ -15,7 +15,9 @@ export class MasterRegisterService{
         queryStringParams = queryStringParams.append("storeID", "" +storeID );
         return this.http.get(this.masterRegsterUrl, { params: queryStringParams });
     }
-    
+    DeleteMasterRegister(id:number){
+        return this.http.delete(this.masterRegsterUrl+'/'+id);
+    }
    
 
     createMasterRegister(masterRegister:MasterRegisterViewmodel){

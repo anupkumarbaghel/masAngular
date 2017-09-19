@@ -25,9 +25,10 @@
         <td>{{indent.providedOn}}</td>
         <td>{{indent.issuedBy}}</td>
         <td>{{indent.submittedDate}}</td>
+        <td><button type="button" (click)="onDelIndent(indent.id)">X</button></td>
       </tr>
       <tr class="collapse" [attr.id]="i">
-        <td colspan="8">
+        <td colspan="9">
           <app-readonly-indent [indentID]="indent.id" #sic></app-readonly-indent>
         </td>
       </tr>

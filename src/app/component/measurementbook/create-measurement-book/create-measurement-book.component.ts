@@ -142,6 +142,7 @@ export class CreateMeasurementBookComponent implements OnInit {
         break;
     }
     this.onSelectedIndexChange.emit(index);
+    alert("Saved successfully");
   }
   onError(errorMessage) {
     if (errorMessage.status == 404) {

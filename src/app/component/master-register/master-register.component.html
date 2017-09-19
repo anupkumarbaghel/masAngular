@@ -10,18 +10,22 @@
     </thead>
     <tbody>
       <tr *ngFor="let masterRegister of masterRegisterCollection">
-        <td>{{masterRegister.serialNumber}}</td>
-        <td>{{masterRegister.materialNameWithDescription}}</td>
-        <td>{{masterRegister.materialUnit}}</td>
-        <td>{{masterRegister.materialRate}}</td>
-      </tr>
-      <tr>
-        <td><input class="fullWidth form-control" [(ngModel)]="masterRegister.serialNumber" type="text"></td>
+        <td><input class="smallWidth form-control" [(ngModel)]="masterRegister.serialNumber" type="text"></td>
         <td> 
           <input  class="fullWidth form-control" [(ngModel)]="masterRegister.materialNameWithDescription" type="text">
         </td>
-        <td><input class="fullWidth form-control" [(ngModel)]="masterRegister.materialUnit" type="text"></td>
-        <td><input class="fullWidth form-control" [(ngModel)]="masterRegister.materialRate" type="number"></td>
+        <td><input class="mediumWidth form-control" [(ngModel)]="masterRegister.materialUnit" type="text"></td>
+        <td><input class="mediumWidth form-control" [(ngModel)]="masterRegister.materialRate" type="number"></td>
+        <td><button type="button" (click)="onUpdateButtonClick(masterRegister)">Update</button></td>
+        <td><button type="button" (click)="onDelMasterRegister(masterRegister.id)">X</button></td>
+      </tr>
+      <tr>
+        <td><input class="smallWidth form-control" [(ngModel)]="masterRegister.serialNumber" type="text"></td>
+        <td> 
+          <input  class="fullWidth form-control" [(ngModel)]="masterRegister.materialNameWithDescription" type="text">
+        </td>
+        <td><input class="mediumWidth form-control" [(ngModel)]="masterRegister.materialUnit" type="text"></td>
+        <td><input class="mediumWidth form-control" [(ngModel)]="masterRegister.materialRate" type="number"></td>
       </tr>
     </tbody>
   </table>

@@ -3,7 +3,7 @@ export class MasterRegisterViewmodel {
     serialNumber: string;
     materialNameWithDescription: string;
     materialUnit: string;
-    MaterialRate:number;
+    materialRate:number;
     storeID: number;
     sequence:number;
 }

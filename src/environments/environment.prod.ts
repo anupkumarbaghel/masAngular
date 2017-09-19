@@ -1,4 +1,4 @@
 export const environment = {
   production: true
-  ,apiBaseEndPoint:"http://mas-app.azurewebsites.net/api"   
+  ,apiBaseEndPoint:"http://storesupervision.azurewebsites.net/api"   
 };

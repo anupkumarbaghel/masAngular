@@ -39,7 +39,9 @@ export class SubmittedMeasurementBookComponent {
         e.getMeasurementBookByID();
     });
   }
-
+  onDelMeasurementBook(measurementBookID:number){
+    this.measurementBookService.DeleteMeasurementBook(measurementBookID).subscribe(null,null,()=>this.getMeasurementBook());
+ }
   
 
 }
