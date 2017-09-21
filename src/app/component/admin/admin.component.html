@@ -1,5 +1,5 @@
 <div *ngIf="admin; else login" >
- 
+ Welcome! {{admin.name}}
 
 <div class="table-responsive">
   <table class="table ">
@@ -34,4 +34,27 @@
 </div>
 <ng-template #login>
   <app-lock (onAdminLockOpen)="onLockOpen($event)" [parentName]="myName"></app-lock>
+  <hr>
+ 
+  
+  <div class="form-group row">
+      <label for="txtIndentNumber" class="col-md-3 text-right col-form-label">Create Store Admin</label>
+      <div class="col-md-2">
+          <input class="form-control" placeholder="Store Admin Name"
+           [(ngModel)]="registerAdmin.name" type="text" id="txtLockKey">
+      </div>
+    <div class="col-md-4">
+        <input class="form-control" placeholder="Store Admin Key"
+         [(ngModel)]="registerAdmin.key" type="text" id="txtLockKey">
+    </div>
+    <button type="submit" (click)="onNewAdminRegister()" class="btn btn-success">{{registerLabel}}</button>
+</div>
+
+
+
+
+
+
+
+
 </ng-template>

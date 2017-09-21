@@ -1,6 +1,6 @@
 export class MasterRegisterViewmodel {
     id: number;
-    serialNumber: string;
+    serialNumber: number;
     materialNameWithDescription: string;
     materialUnit: string;
     materialRate:number;

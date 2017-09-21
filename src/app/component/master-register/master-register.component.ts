@@ -34,7 +34,7 @@ export class MasterRegisterComponent implements OnInit {
         .subscribe(
         data => this.masterRegisterCollection.push(data as MasterRegisterViewmodel)
         , error => alert(JSON.stringify(error))
-        , () => this.masterRegister = new MasterRegisterViewmodel()
+        , () =>{this.getAllMasterRegister();this.masterRegister = new MasterRegisterViewmodel();} 
         );
     }
   }
@@ -46,16 +46,25 @@ export class MasterRegisterComponent implements OnInit {
         .subscribe(
         data => masterRegister=data as MasterRegisterViewmodel
         , error => alert(JSON.stringify(error))
-        , () => alert("Update Successfully")
+        , () =>{this.getAllMasterRegister();
+            alert("Update Successfully")}
         );
+       
     }
   }
+
+  sortMasterRegister(){
+    this.masterRegisterCollection.sort((a, b) =>a.serialNumber-b.serialNumber);
+  }
+
 
   getAllMasterRegister() {
     this.masterRegisterService.getAllMasterRegister(this.inputStore.id).subscribe(
       responseMasterRegisters => this.masterRegisterCollection = responseMasterRegisters as MasterRegisterViewmodel[]
       , error => alert(error)
+      ,()=>this.sortMasterRegister()
     );
+   
   }
 
   onDelMasterRegister(masterRegisterID:number){

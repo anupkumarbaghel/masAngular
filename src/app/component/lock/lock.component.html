@@ -1,10 +1,10 @@
 <div class="mt-4">
     <div class="form-group row">
-        <label for="txtIndentNumber" class="col-md-2 text-right col-form-label">Please enter your key</label>
+        <label for="txtIndentNumber" class="col-md-3 text-right col-form-label">{{KeyLabelMessage}}</label>
         <div class="col-md-4">
             <input class="form-control" [(ngModel)]="key" type="text" id="txtLockKey">
         </div>
-        <button type="button" (click)="logIn()" class="btn btn-success">Ok</button>
+        <button type="submit" (click)="logIn()" class="btn btn-success">{{loginButtonLabel}}</button>
     </div>
     <div *ngIf="error" class="form-group row text-right">
         <h5 style="color:red">Invalid key please try again</h5>

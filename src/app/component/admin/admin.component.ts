@@ -15,10 +15,15 @@ import { environment } from '../../../environments/environment';
 export class AdminComponent implements OnInit {
   constructor(private http: HttpClient) { }
   ngOnInit() {
-
+    this.registerAdmin=new AdminViewModel();
+    this.registerAdmin.id=0;
   }
   myName: string = "admin";
   admin: AdminViewModel;
+  registerAdmin:AdminViewModel;
+  registerLabel:string="Register";
+  
+ 
 
   onLockOpen(admin: AdminViewModel) {
     this.admin = admin;
@@ -30,8 +35,8 @@ export class AdminComponent implements OnInit {
 
   onSaveButtonClick() {
     if (this.validateAdmin()) {
-      let lockUrl: string = environment.apiBaseEndPoint + '/admin';
-      this.http.post(lockUrl, this.admin).subscribe(
+      let adminUrl: string = environment.apiBaseEndPoint + '/admin';
+      this.http.post(adminUrl, this.admin).subscribe(
         resAdmin => this.admin = resAdmin as AdminViewModel
         , error => alert('Error Plaeae try again')
         , () => this.addRowToAdmin()
@@ -41,6 +46,17 @@ export class AdminComponent implements OnInit {
       alert("Entry is not correct. Please try again");
     }
 
+  }
+  onNewAdminRegister(){
+    this.registerLabel="Wait...";
+    let adminUrl: string = environment.apiBaseEndPoint + '/admin';
+    this.http.post(adminUrl, this.registerAdmin).subscribe(
+      resAdmin => this.admin = resAdmin as AdminViewModel
+      , error =>{this.registerLabel="Register";  alert('Key already exist. Please select unique key name.');this.registerAdmin=new AdminViewModel();}
+      , () =>{alert("Store Admin Created Successfully. Please write or remember your key : " +this.admin.key);
+      this.admin.storeCollection=[];
+      this.addRowToAdmin()}
+    );
   }
 
   validateAdmin(): boolean {
