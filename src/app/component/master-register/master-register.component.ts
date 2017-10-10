@@ -62,7 +62,9 @@ export class MasterRegisterComponent implements OnInit {
     this.masterRegisterService.getAllMasterRegister(this.inputStore.id).subscribe(
       responseMasterRegisters => this.masterRegisterCollection = responseMasterRegisters as MasterRegisterViewmodel[]
       , error => alert(error)
-      ,()=>this.sortMasterRegister()
+      ,()=>{ this.sortMasterRegister();
+        this.masterRegisterCollection.splice(0,1);
+       }
     );
    
   }
