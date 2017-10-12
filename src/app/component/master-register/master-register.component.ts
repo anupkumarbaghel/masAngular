@@ -24,7 +24,9 @@ export class MasterRegisterComponent implements OnInit {
 
 
   masterRegisterCollection: MasterRegisterViewmodel[] = [new MasterRegisterViewmodel()];
+  masterRegisterCollectionAll:MasterRegisterViewmodel[] = [new MasterRegisterViewmodel()];
   masterRegister: MasterRegisterViewmodel = new MasterRegisterViewmodel();
+  pageNumber:number=1;
 
 
   onSaveButtonClick() {
@@ -60,11 +62,13 @@ export class MasterRegisterComponent implements OnInit {
 
   getAllMasterRegister() {
     this.masterRegisterService.getAllMasterRegister(this.inputStore.id).subscribe(
-      responseMasterRegisters => this.masterRegisterCollection = responseMasterRegisters as MasterRegisterViewmodel[]
+      responseMasterRegisters => this.masterRegisterCollectionAll = responseMasterRegisters as MasterRegisterViewmodel[]
       , error => alert(error)
-      ,()=>{ this.sortMasterRegister();
-        this.masterRegisterCollection.splice(0,1);
-       }
+      ,()=>{ 
+        this.masterRegisterCollectionAll.splice(0,1);
+        this.masterRegisterCollection=this.masterRegisterCollectionAll.slice((this.pageNumber-1)*100,this.pageNumber*100)
+        this.sortMasterRegister(); 
+      }
     );
    
   }
@@ -73,6 +77,10 @@ export class MasterRegisterComponent implements OnInit {
     this.masterRegisterService.DeleteMasterRegister(masterRegisterID).subscribe(null
       ,error=>alert("Material cannot be deleted as used in the Indent or Measurement")
       ,()=>this.getAllMasterRegister());
+ }
+
+ onPageButtonClick(){
+  this.masterRegisterCollection=this.masterRegisterCollectionAll.slice((this.pageNumber-1)*100,this.pageNumber*100)
  }
 
 }
