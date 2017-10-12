@@ -31,7 +31,7 @@
       </tr>
     </tbody>
   </table>
-  <input [(ngModel)]="pageNumber" type="text"><button>Click</button>
+  <button (click)="onPageMinusButtonClick()"><</button> <input style="width:70px" class="text-center" [(ngModel)]="pageNumber" type="number"><button (click)="onPagePlusButtonClick()">></button>
 </div>
 
 

@@ -27,6 +27,7 @@ export class MasterRegisterComponent implements OnInit {
   masterRegisterCollectionAll:MasterRegisterViewmodel[] = [new MasterRegisterViewmodel()];
   masterRegister: MasterRegisterViewmodel = new MasterRegisterViewmodel();
   pageNumber:number=1;
+  pageSize:number=10;
 
 
   onSaveButtonClick() {
@@ -56,7 +57,7 @@ export class MasterRegisterComponent implements OnInit {
   }
 
   sortMasterRegister(){
-    this.masterRegisterCollection.sort((a, b) =>a.serialNumber-b.serialNumber);
+    this.masterRegisterCollectionAll.sort((a, b) =>a.serialNumber-b.serialNumber);
   }
 
 
@@ -65,9 +66,10 @@ export class MasterRegisterComponent implements OnInit {
       responseMasterRegisters => this.masterRegisterCollectionAll = responseMasterRegisters as MasterRegisterViewmodel[]
       , error => alert(error)
       ,()=>{ 
-        this.masterRegisterCollectionAll.splice(0,1);
-        this.masterRegisterCollection=this.masterRegisterCollectionAll.slice((this.pageNumber-1)*100,this.pageNumber*100)
         this.sortMasterRegister(); 
+        this.masterRegisterCollectionAll.splice(0,1);
+        this.setPage();
+        
       }
     );
    
@@ -78,9 +80,31 @@ export class MasterRegisterComponent implements OnInit {
       ,error=>alert("Material cannot be deleted as used in the Indent or Measurement")
       ,()=>this.getAllMasterRegister());
  }
-
- onPageButtonClick(){
-  this.masterRegisterCollection=this.masterRegisterCollectionAll.slice((this.pageNumber-1)*100,this.pageNumber*100)
+ setPage(){
+  this.masterRegisterCollection=this.masterRegisterCollectionAll.slice((this.pageNumber-1)*this.pageSize,this.pageNumber*this.pageSize)
+ }
+ maxPageNumber(){
+  let totalItem= this.masterRegisterCollectionAll.length;
+  let maxPageNumber=Math.ceil( totalItem/this.pageSize);
+  return maxPageNumber;
+ }
+ plusPageNumber(){
+ let maxPageNo=this.maxPageNumber();
+  if(this.pageNumber<maxPageNo && this.pageNumber>=1) this.pageNumber=this.pageNumber+1;
+  else this.pageNumber=maxPageNo;
+ }
+ minusPageNumber(){
+  let maxPageNo=this.maxPageNumber();
+    if(this.pageNumber>1&&this.pageNumber<=maxPageNo)  this.pageNumber=this.pageNumber-1;
+    else this.pageNumber=1;
+ }
+ onPagePlusButtonClick(){
+   this.plusPageNumber();
+   this.setPage();
+ }
+ onPageMinusButtonClick(){
+  this.minusPageNumber();
+   this.setPage();
  }
 
 }
