@@ -4,6 +4,7 @@ export class MasterRegisterViewmodel {
     materialNameWithDescription: string;
     materialUnit: string;
     materialRate:number;
+    quantity:number;
     storeID: number;
     sequence:number;
 }
