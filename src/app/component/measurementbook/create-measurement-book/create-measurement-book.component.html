@@ -61,7 +61,7 @@
         <td><input class="smallWidth form-control" [(ngModel)]="measurementBookTable.serialNumber" type="text"></td>
         <td><select [compareWith]="byId" [(ngModel)]="measurementBookTable.masterRegister" class="form-control">
             <option  *ngFor="let masterRegister of masterRegisterCollection" 
-            [ngValue]="masterRegister">{{masterRegister.materialNameWithDescription}}</option>
+            [ngValue]="masterRegister">{{masterRegister.serialNumber}}_{{masterRegister.materialNameWithDescription}}</option>
          </select></td>
         <td>
             <div class="input-group">

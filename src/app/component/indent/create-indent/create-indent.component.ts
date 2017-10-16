@@ -120,11 +120,14 @@ export class CreateIndentComponent implements OnInit {
       //, () => this.indent.indentTableCollection.push(new IndentTableViewmodel())
       ); 
   }
-
+  sortMasterRegister(){
+    this.masterRegisterCollection.sort((a, b) =>a.serialNumber-b.serialNumber);
+  }
   initilizeMasterRegisterForDropDown(){
     this.masterRegisterService.getAllMasterRegister(this.inputStore.id).subscribe(
       responseMasterRegisters => this.masterRegisterCollection = responseMasterRegisters as MasterRegisterViewmodel[]
       , error => alert(error)
+      ,()=>this.sortMasterRegister()
     );
   }
 

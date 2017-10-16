@@ -56,7 +56,7 @@
         <td>
           <select [compareWith]="byId" [(ngModel)]="indentTable.masterRegister" class="form-control">
              <option  *ngFor="let masterRegister of masterRegisterCollection" 
-             [ngValue]="masterRegister">{{masterRegister.materialNameWithDescription}}</option>
+             [ngValue]="masterRegister">{{masterRegister.serialNumber}}_{{masterRegister.materialNameWithDescription}}</option>
           </select>
         </td>
         <td>
