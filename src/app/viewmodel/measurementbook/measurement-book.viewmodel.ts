@@ -5,7 +5,7 @@ export class MeasurementBookViewmodel{
   nameOfContractor:string;
   aggrementNumber:string;
   workOrderNumber:string;
-  lUNOrderNo:string;
+  lunOrderNo:string;
   mbNumber:string;
   pageNumber:string;
   measurementDate:Date;
@@ -15,4 +15,8 @@ export class MeasurementBookViewmodel{
   storeID:number;
   mbTable:MeasurementBookTableViewmodel[]=[new MeasurementBookTableViewmodel()];
   sequence:number;
+  billNo:string;
+  billMBNo:string;
+  billPageNo:string;
+  billDate:Date;
 }

@@ -1,54 +1,99 @@
 <div class="bg-readonly">
   <div class="form-group row">
-    <div class="col-md-3 text-right mt-3">
-    Name of Contractor
+    <div class="col-md-2 text-right mt-3">
+    Firm/Contractor
     </div>
-    <div class="col-md-9 mt-3">
+    <div class="col-md-4 mt-3">
       {{measurementBook.nameOfContractor}}
     </div>
+    <div class="col-md-2 text-right mt-3">
+      LUN Order no 
+      </div>
+      <div class="col-md-4 mt-3">
+        {{measurementBook.lunOrderNo}}
+      </div>
   </div>
 
   <div class="form-group row">
-    <div class="col-md-3 text-right">
-    Aggrement no.
+    <div class="col-md-2 text-right">
+    Agreement no
     </div>
-    <div class="col-md-9">
+    <div class="col-md-4">
       {{measurementBook.aggrementNumber}}
     </div>
+    <div class="col-md-2 text-right">
+      Work Order no.
+       </div>
+      <div class="col-md-4">
+        {{measurementBook.workOrderNumber}}
+      </div>
   </div>
 
-  <div class="form-group row">
-     <div class="col-md-3 text-right">
-    Work Order no.
-     </div>
-    <div class="col-md-9">
-      {{measurementBook.workOrderNumber}}
-    </div>
-  </div>
 
   <div class="form-group row">
-     <div class="col-md-3 text-right">
-    M.B no.
+     <div class="col-md-2 text-right">
+      Mts MB no 
      </div>
-    <div class="col-md-9">
+    <div class="col-md-4">
       {{measurementBook.mbNumber}}
     </div>
+    <div class="col-md-2 text-right">
+      Mts Page no 
+       </div>
+      <div class="col-md-4">
+        {{measurementBook.pageNumber}}
+      </div>
   </div>
 
   <div class="form-group row">
-     <div class="col-md-3 text-right">
-    Page no.
-     </div>
-    <div class="col-md-9">
-      {{measurementBook.pageNumber}}
+    <div class="col-md-2 text-right">
+      Bill No
     </div>
+   <div class="col-md-4">
+     {{measurementBook.billNo}}
+   </div>
+   <div class="col-md-2 text-right">
+    Bill MB no
+      </div>
+     <div class="col-md-4">
+       {{measurementBook.billMBNo}}
+     </div>
+ </div>
+
+ <div class="form-group row">
+  <div class="col-md-6 text-right">
   </div>
+ 
+ <div class="col-md-2 text-right">
+  Bill Page no
+    </div>
+   <div class="col-md-4">
+     {{measurementBook.billPageNo}}
+   </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-md-2 text-right">
+    Measurement dt 
+  </div>
+ <div class="col-md-4">
+   {{measurementBook.measurementDate}}
+ </div>
+ <div class="col-md-2 text-right">
+  Bill dt 
+    </div>
+   <div class="col-md-4">
+     {{measurementBook.billDate}}
+   </div>
+</div>
+
+  
 <div class=" table-responsive">
   <table class="table">
     <thead>
       <tr class="bg-readonlytableheader">
         <th>S.no.</th>
-        <th>Discription</th>
+        <th>Description</th>
         <th>Qty</th>
         <th>Head of Account</th>
 
@@ -59,7 +104,7 @@
         <td>{{measurementBookTable.serialNumber}}</td>
         <td>{{measurementBookTable.masterRegister.materialNameWithDescription}}</td>
         <td>{{measurementBookTable.quantity}}{{measurementBookTable.masterRegister.materialUnit}}</td>
-        <td>{{measurementBookTable.headOfAccount}}</td>
+        <td *ngIf="measurementBook.mbTable.indexOf(measurementBookTable)==0" [attr.rowspan]="measurementBook.mbTable.length">{{measurementBook.headOfAccount}}</td>
 
       </tr>
       

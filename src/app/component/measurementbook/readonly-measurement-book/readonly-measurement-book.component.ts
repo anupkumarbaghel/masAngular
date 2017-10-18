@@ -18,7 +18,10 @@ export class ReadonlyMeasurementBookComponent{
 
   getMeasurementBookByID(){
      this.measurementBookService.getMeasurementBook(this.measurementBookID)
-     .subscribe(data => this.measurementBook = data as MeasurementBookViewmodel);
+     .subscribe(data => this.measurementBook = data as MeasurementBookViewmodel
+         ,error=>alert(JSON.stringify(error))
+         
+    );
   }
 
 }
