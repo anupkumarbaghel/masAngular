@@ -4,5 +4,6 @@ export class ExcelReportViewmodel{
     storeName:string;
     reportUrl:string;
     storeID:number;
+    reportType:string;
 
 }

@@ -34,6 +34,7 @@ import { MasterRegisterComponent } from './component/master-register/master-regi
 import { MasaccountComponent } from './component/masaccount/masaccount.component';
 
 import {DpDatePickerModule} from 'ng2-date-picker';
+import { ReportsComponent } from './component/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {DpDatePickerModule} from 'ng2-date-picker';
     LockComponent,
     StoreComponent,
     MasterRegisterComponent,
-    MasaccountComponent
+    MasaccountComponent,
+    ReportsComponent
   ],
   imports: [
      BrowserModule

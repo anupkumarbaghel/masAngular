@@ -8,6 +8,7 @@
       <div><button md-raised-button  (click)="showIndent()" [color]="indentActive" class="fullWidth">Indent</button></div>
       <div><button md-raised-button (click)="showMeasurement()" [color]="measurementActive" class="fullWidth">Measurement Book</button></div>
       <div><button md-raised-button (click)="showMasaccount()" [color]="masaccountActive" class="fullWidth">MAS Account</button></div>
+      <div><button md-raised-button (click)="showReports()" [color]="reportsActive" class="fullWidth">Reports</button></div>
     </md-sidenav>
    
     <div class="text-left">
@@ -26,6 +27,9 @@
     </div>
     <div *ngIf="currentComponent=='masaccount'">
       <app-masaccount [inputStore]="store"></app-masaccount>
+    </div>
+    <div *ngIf="currentComponent=='reports'">
+      <app-reports [inputStore]="store"></app-reports>
     </div>
   
   </md-sidenav-container>

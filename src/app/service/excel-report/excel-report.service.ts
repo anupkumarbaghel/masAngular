@@ -10,9 +10,15 @@ export class ExcelReportService{
     
     constructor(private http:HttpClient){}
 
-    createExcelReport(excelReportViewmodel:ExcelReportViewmodel){
+    createExcelMasReport(excelReportViewmodel:ExcelReportViewmodel){
+        excelReportViewmodel.reportType="mas";
        return  this.http.post(this.excelReportUrl,excelReportViewmodel);
     }
+
+    createExcelBalanceQuantityReport(excelReportViewmodel:ExcelReportViewmodel){
+        excelReportViewmodel.reportType="bq";
+        return  this.http.post(this.excelReportUrl,excelReportViewmodel);
+     }
 
    
     

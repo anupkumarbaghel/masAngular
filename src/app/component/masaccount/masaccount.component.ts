@@ -25,7 +25,7 @@ export class MasaccountComponent implements OnInit {
   onGenerateMasAccount(){
      this.excelReportInput.storeID=this.inputStore.id;
      this.excelReportInput.storeName=this.inputStore.name;
-     this.excelReportService.createExcelReport(this.excelReportInput).subscribe(
+     this.excelReportService.createExcelMasReport(this.excelReportInput).subscribe(
        data=>this.excelReportInput= data as ExcelReportViewmodel
        ,error => alert(JSON.stringify(error))
        ,()=>window.location.href=this.excelReportInput.reportUrl
