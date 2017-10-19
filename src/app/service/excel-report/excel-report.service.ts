@@ -20,6 +20,11 @@ export class ExcelReportService{
         return  this.http.post(this.excelReportUrl,excelReportViewmodel);
      }
 
+     createExcelAmountBalanceQuantityReport(excelReportViewmodel:ExcelReportViewmodel){
+        excelReportViewmodel.reportType="abq";
+        return  this.http.post(this.excelReportUrl,excelReportViewmodel);
+     }
+
    
     
 }

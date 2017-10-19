@@ -18,6 +18,8 @@ export class ReportsComponent implements OnInit {
     }
   
     @Input() inputStore: StoreViewmodel;
+    balanceQuantityDate:Date;
+    amountBalanceQuantityDate:Date;
   
     excelReportInput: ExcelReportViewmodel = new ExcelReportViewmodel();
   
@@ -25,11 +27,23 @@ export class ReportsComponent implements OnInit {
     onGenerateBalanceQuantityReport(){
        this.excelReportInput.storeID=this.inputStore.id;
        this.excelReportInput.storeName=this.inputStore.name;
+       this.excelReportInput.startDate=this.balanceQuantityDate;
        this.excelReportService.createExcelBalanceQuantityReport(this.excelReportInput).subscribe(
          data=>this.excelReportInput= data as ExcelReportViewmodel
          ,error => alert(JSON.stringify(error))
          ,()=>window.location.href=this.excelReportInput.reportUrl
        );
+    }
+
+    onGenerateAmountBalanceQuantityReport(){
+      this.excelReportInput.storeID=this.inputStore.id;
+      this.excelReportInput.storeName=this.inputStore.name;
+      this.excelReportInput.startDate=this.amountBalanceQuantityDate;
+      this.excelReportService.createExcelAmountBalanceQuantityReport(this.excelReportInput).subscribe(
+        data=>this.excelReportInput= data as ExcelReportViewmodel
+        ,error => alert(JSON.stringify(error))
+        ,()=>window.location.href=this.excelReportInput.reportUrl
+      );
     }
 
 }

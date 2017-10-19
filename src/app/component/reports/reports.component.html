@@ -6,12 +6,29 @@
     <div class="form-group row mt-4">
       <label for="txtMasAccountFromDate" class="col-md-2 col-form-label text-right">Date</label>
       <div class="col-md-4">
-        <input class="form-control" type="date" [(ngModel)]="excelReportInput.startDate" id="txtMasAccountFromDate">
+        <input class="form-control" type="date" [(ngModel)]="balanceQuantityDate" id="txtMasAccountFromDate">
       </div>  
     </div>
   
     <div class="text-right">
       <button type="button" class="btn btn-success" (click)="onGenerateBalanceQuantityReport()">Generate Balance Quantity Report</button>
+    </div>
+
+    <hr>
+
+    <hr>
+    <div class="head">
+     <h4>Amount Balance Quantity Report</h4>
+    </div>
+    <div class="form-group row mt-4">
+      <label for="txtMasAccountFromDate" class="col-md-2 col-form-label text-right">Date</label>
+      <div class="col-md-4">
+        <input class="form-control" type="date" [(ngModel)]="amountBalanceQuantityDate" id="txtMasAccountFromDate">
+      </div>  
+    </div>
+  
+    <div class="text-right">
+      <button type="button" class="btn btn-success" (click)="onGenerateAmountBalanceQuantityReport()">Generate Amount Balance Quantity Report</button>
     </div>
 
     <hr>
