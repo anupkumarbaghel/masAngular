@@ -18,6 +18,8 @@ export class DraftIndentComponent {
 
   @Output() onDraftOpenSuccess = new EventEmitter<number>();
   @Input() inputStore:StoreViewmodel;
+  @Input() isSitework:boolean;
+  
 
    indentArray: IndentViewmodel[] = [];
    indent: IndentViewmodel;
@@ -28,7 +30,7 @@ export class DraftIndentComponent {
 
   getIndent(): void {
 
-    this.indentService.getAllIndentByStatus("d",this.inputStore.id)
+    this.indentService.getAllIndentByStatus("d",this.inputStore.id,this.isSitework)
       .subscribe(data => this.indentArray = data as IndentViewmodel[]
       , error => console.log('error: ' + JSON.stringify(error))
       );

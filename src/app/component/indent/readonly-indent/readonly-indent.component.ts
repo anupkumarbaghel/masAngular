@@ -14,6 +14,8 @@ export class ReadonlyIndentComponent  {
 
   @Input() indentID:number;
   indent=new IndentViewmodel();
+  @Input() isSitework:boolean;
+  
 
   getIndentByID(){
      this.indentService.GetIndent(this.indentID)

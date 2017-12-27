@@ -14,10 +14,11 @@ export class IndentService{
 
     constructor(private http:HttpClient){}
 
-    getAllIndentByStatus(indentStatus:string,storeID:number){
+    getAllIndentByStatus(indentStatus:string,storeID:number,isSitework:boolean){
           let queryStringParams = new HttpParams();
            queryStringParams = queryStringParams.append("indentStatus", indentStatus);
            queryStringParams = queryStringParams.append("storeID",""+storeID);
+           queryStringParams = queryStringParams.append("isSitework",""+isSitework);
 
         return this.http.get(this.indentUrl,{params:queryStringParams});
     }
@@ -28,10 +29,11 @@ export class IndentService{
     DeleteIndent(id:number){
         return this.http.delete(this.indentUrl+'/'+id);
     }
-    getOpenIndent(storeID:number){
-        return this.http.get(this.openIndentApiUrl,{
-           params: new HttpParams().set('storeID',""+storeID),
-        });
+    getOpenIndent(storeID:number,isSitework:boolean){
+        let queryStringParams = new HttpParams();
+        queryStringParams = queryStringParams.append("storeID",""+storeID);
+        queryStringParams = queryStringParams.append("isSitework",""+isSitework);
+        return this.http.get(this.openIndentApiUrl,{params:queryStringParams});
     }
 
     createEditIndent(indent:IndentViewmodel){

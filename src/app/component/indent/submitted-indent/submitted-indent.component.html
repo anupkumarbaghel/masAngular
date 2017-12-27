@@ -3,7 +3,7 @@
   <thead>
     <tr>
       <th></th>
-      <th>Indent No.</th>
+      <th>{{isSitework?'Indent No. /Reference':'Indent No.'}}</th>
       <th> Date </th>
       <th>Provided To</th>
       <th>Provided By</th>
@@ -29,7 +29,7 @@
       </tr>
       <tr class="collapse" [attr.id]="i">
         <td colspan="9">
-          <app-readonly-indent [indentID]="indent.id" #sic></app-readonly-indent>
+          <app-readonly-indent [isSitework]="isSitework" [indentID]="indent.id" #sic></app-readonly-indent>
         </td>
       </tr>
     </ng-template>

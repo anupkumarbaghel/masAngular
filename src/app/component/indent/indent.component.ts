@@ -15,6 +15,7 @@ export class IndentComponent  {
   constructor() { }
 
  @Input() inputStore:StoreViewmodel;
+ @Input() isSitework:boolean;
  selIndex: number;
   
   @ViewChild(CreateIndentComponent)

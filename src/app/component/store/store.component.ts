@@ -17,6 +17,7 @@ export class StoreComponent implements OnInit {
   currentComponent:string="indent";
   masterActive:string;
   indentActive:string="primary";
+  siteworkActive:string;
 measurementActive:string;
 masaccountActive:string;
 reportsActive:string;
@@ -33,6 +34,10 @@ reportsActive:string;
    this.currentComponent="indent";
    this.markActive(this.currentComponent);
  }
+ showSitework(){
+  this.currentComponent="sitework";
+  this.markActive(this.currentComponent);
+}
  showMeasurement(){
     this.currentComponent="measurement";
      this.markActive(this.currentComponent);
@@ -53,6 +58,7 @@ showReports(){
    this.masterActive="";
    this.masaccountActive="";
    this.reportsActive="";
+   this.siteworkActive="";
    let active="primary";
    switch(choise)
     {
@@ -61,6 +67,9 @@ showReports(){
       break;
       case "indent":
        this.indentActive=active;
+       break;
+       case "sitework":
+       this.siteworkActive=active;
        break;
        case "measurement":
        this.measurementActive=active;

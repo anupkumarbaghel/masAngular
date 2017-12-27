@@ -4,7 +4,7 @@
 
 <div class="container mt-4">
   <div class="form-group row">
-    <label for="txtIndentNumber" class="col-md-2 text-right col-form-label">Indent no.</label>
+    <label for="txtIndentNumber" class="col-md-2 text-right col-form-label">{{isSitework?'Indent No. /Reference':'Indent No.'}}</label>
     <div class="col-md-4">
       <input class="form-control" [(ngModel)]="indent.indentNumber" type="text" id="txtIndentNumber">
     </div>
@@ -69,8 +69,7 @@
           <textarea class="largeWidth form-control" [(ngModel)]="indent.headOfAccount" [rows]="nameContractorRowSpan*2" ></textarea>
           </td>
         <td *ngIf="indent.indentTableCollection.indexOf(indentTable)==0" [attr.rowspan]="nameContractorRowSpan">
-          <textarea *ngIf="this.indent.isReceive" class="largeWidth form-control" [(ngModel)]="indent.providedBy" [rows]="nameContractorRowSpan*2"  ></textarea>
-              <textarea *ngIf="!this.indent.isReceive" class="largeWidth form-control" [(ngModel)]="indent.providedTo" [rows]="nameContractorRowSpan*2"  ></textarea>
+              <textarea  class="largeWidth form-control" [(ngModel)]="indent.providedTo" [rows]="nameContractorRowSpan*2"  ></textarea>
             </td>
         <td><button *ngIf="indent.indentTableCollection.indexOf(indentTable)!=0" type="button" (click)="onDelButtonClick(indentTable)">X</button></td>
       </tr>

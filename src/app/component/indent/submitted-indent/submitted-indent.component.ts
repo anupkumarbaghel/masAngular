@@ -17,9 +17,11 @@ export class SubmittedIndentComponent{
   indentArray:IndentViewmodel[]=[];
   @ViewChildren("sic")private childReadonly:QueryList<ReadonlyIndentComponent>;
   @Input() inputStore:StoreViewmodel;
+  @Input() isSitework:boolean;
+  
 
   getIndent():void{
-    this.indentService.getAllIndentByStatus("s",this.inputStore.id)
+    this.indentService.getAllIndentByStatus("s",this.inputStore.id,this.isSitework)
     .subscribe(data=>this.indentArray=data as IndentViewmodel[]
               ,error=>console.log('error: '+JSON.stringify(error))
     );

@@ -30,6 +30,7 @@ export class CreateIndentComponent implements OnInit {
   }
   @Output() onSelectedIndexChange = new EventEmitter<number>();
   @Input() inputStore: StoreViewmodel;
+  @Input() isSitework:boolean;
 
   indent = new IndentViewmodel();
   masterRegisterCollection: MasterRegisterViewmodel[] = [new MasterRegisterViewmodel()];
@@ -51,7 +52,7 @@ export class CreateIndentComponent implements OnInit {
   validationOnSubmit(){
     this.submissionIsCorrect=true;
      let submissionValidateString="Please Fill : ";
-     if(!this.indent.indentNumber){ 
+     if(!this.indent.indentNumber&&!this.isSitework){ 
       this.submissionIsCorrect=false;
       submissionValidateString+="Indent no.,";
      } 
@@ -114,7 +115,7 @@ export class CreateIndentComponent implements OnInit {
 
   InitilizeIndent() {
     this.indent.providedTo=this.inputStore.name;
-    this.indentService.getOpenIndent(this.inputStore.id)
+    this.indentService.getOpenIndent(this.inputStore.id,this.isSitework)
       .subscribe(data => this.indent = data as IndentViewmodel
       , error => this.onError(error)
       //, () => this.indent.indentTableCollection.push(new IndentTableViewmodel())
@@ -136,7 +137,7 @@ export class CreateIndentComponent implements OnInit {
     if (this.inputStore) {
       if (this.inputStore.id > 0) {
         this.indent.storeID=this.inputStore.id;
-
+        this.indent.isSitework=this.isSitework;
         this.indentService.createEditIndent(this.indent).subscribe(
           retrunIndent => this.indent = retrunIndent as IndentViewmodel
           , this.onError

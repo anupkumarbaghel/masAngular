@@ -16,4 +16,5 @@ export class IndentViewmodel{
   storeID:number;
   indentTableCollection:IndentTableViewmodel[]=[new IndentTableViewmodel()];
   sequence:number;
+  isSitework:boolean;
 }

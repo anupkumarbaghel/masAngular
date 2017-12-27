@@ -6,6 +6,7 @@
     
      <div><button md-raised-button  (click)="showMasterregister()" [color]="masterActive" class="fullWidth">Stock Register</button></div>
       <div><button md-raised-button  (click)="showIndent()" [color]="indentActive" class="fullWidth">Indent</button></div>
+      <div><button md-raised-button  (click)="showSitework()" [color]="siteworkActive" class="fullWidth">Site Work</button></div>
       <div><button md-raised-button (click)="showMeasurement()" [color]="measurementActive" class="fullWidth">Measurement Book</button></div>
       <div><button md-raised-button (click)="showMasaccount()" [color]="masaccountActive" class="fullWidth">MAS Account</button></div>
       <div><button md-raised-button (click)="showReports()" [color]="reportsActive" class="fullWidth">Reports</button></div>
@@ -20,7 +21,10 @@
       <app-master-register [inputStore]="store"></app-master-register>
     </div>
     <div *ngIf="currentComponent=='indent'">
-      <app-indent [inputStore]="store"></app-indent>
+      <app-indent [inputStore]="store" [isSitework]="false"></app-indent>
+    </div>
+    <div *ngIf="currentComponent=='sitework'">
+      <app-indent [inputStore]="store" [isSitework]="true"></app-indent>
     </div>
     <div *ngIf="currentComponent=='measurement'">
       <app-measurementbook [inputStore]="store"></app-measurementbook>
